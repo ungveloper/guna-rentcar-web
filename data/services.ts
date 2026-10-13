@@ -1,0 +1,34 @@
+export const services = [
+  {
+    number: "01",
+    title: "단기렌트",
+    english: "SHORT TERM",
+    description: "짧은 일정에도 필요한 만큼. 부산 여행, 출장, 일시적인 차량 이용을 계획할 때 상담할 수 있습니다.",
+    detail: "부산 단기렌트가 필요하다면 일정과 차종을 알려주세요. 이용 기간에 따른 차량과 요금을 안내합니다.",
+    icon: "sun",
+  },
+  {
+    number: "02",
+    title: "월렌트",
+    english: "MONTHLY",
+    description: "한 달 정도 차가 필요한 상황에 맞춰. 차량 이용 기간과 목적에 따라 선택을 도와드립니다.",
+    detail: "부산 월렌트는 이용 기간과 차량 조건에 따라 요금이 달라질 수 있어 전화 상담으로 확인할 수 있습니다.",
+    icon: "calendar",
+  },
+  {
+    number: "03",
+    title: "장기렌트",
+    english: "LONG TERM",
+    description: "오랜 기간 사용할 차량이 필요할 때. 개인 또는 업무 목적에 맞는 대여 조건을 상담합니다.",
+    detail: "부산 장기렌트에 필요한 계약 기간, 운전자 조건, 희망 차급 등을 확인해 안내해 드립니다.",
+    icon: "key",
+  },
+  {
+    number: "04",
+    title: "보험사고대차",
+    english: "REPLACEMENT",
+    description: "사고·수리로 차량 이용이 어려운 때. 사고대차 가능 여부와 필요한 절차를 상담할 수 있습니다.",
+    detail: "부산 사고대차 및 보험대차는 보험 처리 상황과 차량 조건에 따라 진행이 달라질 수 있습니다.",
+    icon: "shield",
+  },
+] as const;

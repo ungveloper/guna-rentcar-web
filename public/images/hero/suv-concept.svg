@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 600" role="img" aria-labelledby="title">
+<title id="title">SUV 유형 콘셉트 일러스트</title>
+<defs><linearGradient id="a" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d1c1a5"/><stop offset=".35" stop-color="#9d8664"/><stop offset=".68" stop-color="#bca989"/><stop offset="1" stop-color="#554f48"/></linearGradient><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7f9399"/><stop offset=".7" stop-color="#202d33"/><stop offset="1" stop-color="#52616a"/></linearGradient><radialGradient id="w"><stop stop-color="#92989b"/><stop offset=".25" stop-color="#292b2d"/><stop offset=".63" stop-color="#a6a9a9"/><stop offset=".77" stop-color="#252628"/><stop offset="1" stop-color="#121313"/></radialGradient><filter id="s"><feGaussianBlur stdDeviation="18"/></filter></defs>
+<ellipse cx="555" cy="491" rx="450" ry="37" fill="#312b22" opacity=".23" filter="url(#s)"/>
+<path d="M109 376 134 344 243 314 306 226Q323 206 364 206h387q52 0 83 34l82 80 78 20q43 12 51 46l-8 76H116q-26-41-7-86Z" fill="url(#a)" stroke="#6b6256" stroke-width="3"/>
+<path d="m305 317 58-89h193v91ZM574 230h177q39 0 60 29l50 60H576Z" fill="url(#b)" stroke="#e5ddcc" stroke-width="8"/>
+<path d="m570 229 1 93" stroke="#b5a182" stroke-width="11"/><path d="m288 333 587 5" stroke="#eadfca" stroke-width="6" opacity=".6"/><path d="m118 427 910 2-5 29H119Z" fill="#343434"/>
+<path d="M120 377q32-22 99-26l-13 29-88 17Z" fill="#f4e6bd"/><path d="m935 339 65 13 26 31-91-14Z" fill="#faf0cd"/>
+<path d="M381 338v70M666 340v65" stroke="#725e46" stroke-width="3"/><path d="M403 346h45m240 2h42" stroke="#5f5142" stroke-width="7" stroke-linecap="round"/>
+<g transform="translate(306 439)"><circle r="81" fill="#171719"/><circle r="68" fill="url(#w)"/><circle r="40" fill="#aaa9a6"/><circle r="22" fill="#46484a"/><g stroke="#d3d5d4" stroke-width="8"><path d="M0-27v-26M0 27v26M-27 0h-26M27 0h26M-19-19l-20-20M19 19l20 20M19-19l20-20M-19 19l-20 20"/></g></g>
+<g transform="translate(842 439)"><circle r="81" fill="#171719"/><circle r="68" fill="url(#w)"/><circle r="40" fill="#aaa9a6"/><circle r="22" fill="#46484a"/><g stroke="#d3d5d4" stroke-width="8"><path d="M0-27v-26M0 27v26M-27 0h-26M27 0h26M-19-19l-20-20M19 19l20 20M19-19l20-20M-19 19l-20 20"/></g></g>
+</svg>

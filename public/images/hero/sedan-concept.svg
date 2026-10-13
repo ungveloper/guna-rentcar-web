@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 620" role="img" aria-labelledby="title desc">
+<title id="title">렌터카 대표 차량 일러스트</title><desc id="desc">실제 보유 차량 사진이 준비되기 전 사용하는 콘셉트 차량 그림입니다.</desc>
+<defs>
+ <linearGradient id="body" x1="0" x2="0.25" y1="0" y2="1"><stop stop-color="#faf8f3"/><stop offset=".29" stop-color="#dfd8c8"/><stop offset=".55" stop-color="#b6a88f"/><stop offset=".72" stop-color="#ece9e0"/><stop offset="1" stop-color="#7d7a77"/></linearGradient>
+ <linearGradient id="glass" x1=".08" y1=".2" x2="1" y2="1"><stop stop-color="#65717a"/><stop offset=".48" stop-color="#202c33"/><stop offset="1" stop-color="#7c8a90"/></linearGradient>
+ <linearGradient id="bumper" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#a6a39f"/><stop offset="1" stop-color="#26292c"/></linearGradient>
+ <linearGradient id="shine" x1="0" x2="1"><stop stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+ <radialGradient id="wheel"><stop offset="0" stop-color="#676b6e"/><stop offset=".25" stop-color="#34383a"/><stop offset=".62" stop-color="#b6b8b7"/><stop offset=".73" stop-color="#4b4e50"/><stop offset=".83" stop-color="#18191a"/><stop offset="1" stop-color="#111214"/></radialGradient>
+ <filter id="shadow" x="-30%" y="-50%" width="160%" height="220%"><feGaussianBlur stdDeviation="17"/></filter>
+</defs>
+<ellipse cx="606" cy="502" rx="518" ry="35" fill="#393631" opacity=".2" filter="url(#shadow)"/>
+<g transform="translate(18 30)">
+<path d="M115 393 Q128 372 165 358 L274 316 Q333 249 425 215 Q525 180 724 185 Q860 194 940 265 L1072 307 Q1127 319 1150 355 L1180 392 Q1188 421 1169 451 L1091 458 201 460 Q141 460 118 439Z" fill="url(#body)" stroke="#817d74" stroke-width="3"/>
+<path d="M297 314 Q367 225 459 215 Q549 191 715 199 Q849 205 922 275 L975 317Z" fill="#494f50" opacity=".78"/>
+<path d="M335 308 Q380 245 460 222 Q522 204 620 207 L619 307Z" fill="url(#glass)" stroke="#dcdad3" stroke-width="7"/>
+<path d="M640 207 Q808 205 892 282 L941 312 645 307Z" fill="url(#glass)" stroke="#dcdad3" stroke-width="7"/>
+<path d="M629 211 634 317" stroke="#aca99e" stroke-width="11"/>
+<path d="M280 323 Q525 337 966 330" fill="none" stroke="#fff" stroke-opacity=".65" stroke-width="6"/>
+<path d="M209 363 Q508 330 1154 369" fill="none" stroke="url(#shine)" stroke-width="20"/>
+<path d="M146 401 Q484 418 1175 391 L1166 444 1085 453 206 453 130 431Z" fill="url(#bumper)" opacity=".58"/>
+<path d="M445 340 446 413" stroke="#827f78" stroke-width="3"/><path d="M747 336 750 423" stroke="#827f78" stroke-width="3"/>
+<path d="M490 340h54" stroke="#756f62" stroke-width="7" stroke-linecap="round"/><path d="M775 343h55" stroke="#756f62" stroke-width="7" stroke-linecap="round"/>
+<path d="M151 363q16-21 78-29l-5 19-76 34Z" fill="#f9f5d9" stroke="#9e9887" stroke-width="4"/>
+<path d="M1027 332q83 17 105 34l-4 19-105-24Z" fill="#fff7de" stroke="#a79f89" stroke-width="4"/>
+<path d="M1042 372 1155 393" stroke="#414345" stroke-width="16" stroke-linecap="round"/>
+<path d="M140 436q470 18 1017 0" fill="none" stroke="#1d2021" stroke-opacity=".55" stroke-width="16"/>
+<g transform="translate(339 432)"><circle r="86" fill="#191b1d"/><circle r="71" fill="url(#wheel)"/><circle r="42" fill="#b5b8b8"/><circle r="31" fill="#33383a"/><circle r="16" fill="#a3a4a1"/><g stroke="#c5c9c9" stroke-width="8" stroke-linecap="round"><path d="M0-28V-57M0 28v29M-28 0h-29M28 0h29M-20-20l-18-18M20 20l18 18M20-20l18-18M-20 20l-18 18"/></g></g>
+<g transform="translate(946 432)"><circle r="86" fill="#191b1d"/><circle r="71" fill="url(#wheel)"/><circle r="42" fill="#b5b8b8"/><circle r="31" fill="#33383a"/><circle r="16" fill="#a3a4a1"/><g stroke="#c5c9c9" stroke-width="8" stroke-linecap="round"><path d="M0-28V-57M0 28v29M-28 0h-29M28 0h29M-20-20l-18-18M20 20l18 18M20-20l18-18M-20 20l-18 18"/></g></g>
+<path d="M145 389 Q304 397 458 389" stroke="#f6f4e9" stroke-opacity=".6" stroke-width="5" fill="none"/>
+</g>
+</svg>

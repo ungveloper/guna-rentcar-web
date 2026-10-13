@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 600" role="img" aria-labelledby="title">
+<title id="title">승합차 유형 콘셉트 일러스트</title>
+<defs><linearGradient id="a" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f7f7f3"/><stop offset=".38" stop-color="#cbc8bf"/><stop offset=".72" stop-color="#e9e5dc"/><stop offset="1" stop-color="#858079"/></linearGradient><linearGradient id="b"><stop stop-color="#627079"/><stop offset=".6" stop-color="#20292d"/><stop offset="1" stop-color="#71818a"/></linearGradient><radialGradient id="w"><stop stop-color="#9da0a1"/><stop offset=".28" stop-color="#313435"/><stop offset=".65" stop-color="#aaaead"/><stop offset=".78" stop-color="#353738"/><stop offset="1" stop-color="#131515"/></radialGradient><filter id="s"><feGaussianBlur stdDeviation="16"/></filter></defs>
+<ellipse cx="553" cy="494" rx="475" ry="35" fill="#403b36" opacity=".25" filter="url(#s)"/>
+<path d="M94 369 108 257q8-50 66-56h646q58 0 88 50l74 104q41 8 56 39v56H105q-31-38-11-81Z" fill="url(#a)" stroke="#99968e" stroke-width="3"/>
+<path d="M145 254q2-21 34-23h186v120H126ZM386 230h221v120H386ZM627 231h176q33 0 51 26l53 92H626Z" fill="url(#b)" stroke="#deded9" stroke-width="9"/><path d="M101 429h935v27H102Z" fill="#333638"/><path d="M110 371 190 348l-1 29-77 22ZM944 360l63 12 17 26-85-13Z" fill="#fff7dd"/><path d="M372 230v214M615 230v214" stroke="#acaaa2" stroke-width="6"/>
+<path d="M404 363h48m228 0h49" stroke="#66635e" stroke-width="8" stroke-linecap="round"/>
+<g transform="translate(295 443)"><circle r="80" fill="#1b1e20"/><circle r="68" fill="url(#w)"/><circle r="40" fill="#c6c8c8"/><circle r="21" fill="#525658"/><g stroke="#dddede" stroke-width="8"><path d="M0-27v-24M0 27v24M-27 0h-24M27 0h24M-19-19l-18-18M19 19l18 18M19-19l18-18M-19 19l-18 18"/></g></g>
+<g transform="translate(858 443)"><circle r="80" fill="#1b1e20"/><circle r="68" fill="url(#w)"/><circle r="40" fill="#c6c8c8"/><circle r="21" fill="#525658"/><g stroke="#dddede" stroke-width="8"><path d="M0-27v-24M0 27v24M-27 0h-24M27 0h24M-19-19l-18-18M19 19l18 18M19-19l18-18M-19 19l-18 18"/></g></g>
+</svg>
