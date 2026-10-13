@@ -1,3 +1,36 @@
+# 건아렌트카 Kinetic Edition
+
+Apple 제품 페이지의 스크롤 중심 스토리텔링과 모바일 탐색 감각을 참고한 건아렌트카 원페이지 랜딩. 구현 코드 및 UI는 독립적으로 작성했습니다.
+
+## 이번 UI 변경
+
+- 메인 CITY / WEEKEND / TOGETHER 이미지 장면 전환 (`HeroStage.tsx`)
+- 3단계 스크롤 연동 시네마틱 차량 쇼케이스 (`ScrollStory.tsx`)
+- 사용 목적별 추천 차량 빠른 선택 (`DrivePicker.tsx`)
+- 스크롤 진행률 및 가벼운 IntersectionObserver 등장 효과 (`ScrollEffects.tsx`)
+- 모바일 하단 `차량·요금` / `전화 문의` 이중 CTA
+- 실제 15개 차량 이미지, PDF 근거 요금, 모달, SEO 및 전화 분석 이벤트 유지
+
+### 접근성·성능
+
+- 대부분의 정보는 Server Components로 HTML에 포함됩니다.
+- 큰 이미지에는 Next/Image 최적화가 적용됩니다.
+- `prefers-reduced-motion`에서는 전환/애니메이션을 제한합니다.
+- 인터랙션이 없는 환경에서도 일반 링크, 차량 목록, 업체 정보는 접근할 수 있습니다.
+
+## 실행
+
+```sh
+npm ci
+npm run dev
+npm run lint
+npm run build
+```
+
+배포: Vercel. 전화 문의: 051-866-1124. 보유 차량 사진과 요금은 실제 차대번호, 색상, 연식과 다를 수 있으므로 최종 안내는 유선 확인이 필요합니다.
+
+---
+
 # 건아렌트카 / GUN-A RENTCAR
 
 Next.js 16 App Router, React 19, Tailwind CSS 4 기반의 **부산 건아렌트카 원페이지 랜딩**입니다.

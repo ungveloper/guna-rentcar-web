@@ -17,7 +17,7 @@ function Rate({ label, price, daily = false }: { label: string; price?: number; 
 }
 
 function VehicleCard({ vehicle, index, onOpen }: { vehicle: Vehicle; index: number; onOpen: (v: Vehicle) => void }) {
-  return <article className="fleet-card">
+  return <article className="fleet-card" id={`vehicle-${vehicle.id}`} data-reveal>
     <button type="button" className="fleet-card__visual" onClick={() => onOpen(vehicle)} aria-label={`${vehicle.model} 차량 사진 및 전체 대여 요금 보기`}>
       <Image src={vehicle.image} alt={vehicle.imageAlt} width={1280} height={853} sizes="(max-width: 680px) 100vw, (max-width: 1080px) 50vw, 33vw" />
       <span className="fleet-card__index">{String(index + 1).padStart(2, "0")} / {categoryEnglish[vehicle.category]}</span>
@@ -39,7 +39,7 @@ export function Fleet() {
 
   return <section className="fleet-section section-pad" id="fleet" aria-labelledby="fleet-title">
     <div className="container">
-      <div className="section-intro"><span className="micro-label">OUR COLLECTION / VEHICLES</span><h2 id="fleet-title">고르는 순간부터,<br/><span>기대되는 드라이브.</span></h2><p>실제 안내 중인 15개 차량 모델을 사진과 함께 둘러보세요. 차종을 선택하면 시간별·기간별 상세 대여 요금도 확인할 수 있습니다.</p></div>
+      <div className="section-intro"><span className="micro-label">OUR COLLECTION / VEHICLES</span><h2 id="fleet-title">차가 달라지면,<br/><span>하루가 달라져.</span></h2><p>15개 차종, 다양한 요금. 원하는 차를 고르면 시간별·기간별 가격까지 바로 볼 수 있어요.</p></div>
       <div className="fleet-toolbar"><div className="fleet-filters" role="group" aria-label="차종별 차량 필터">{categoryOptions.map(opt => <button key={opt.value} type="button" className={active === opt.value ? "is-active" : ""} aria-pressed={active === opt.value} onClick={()=>setActive(opt.value)}>{opt.label}</button>)}</div><span className="fleet-count">{String(filtered.length).padStart(2,"0")} MODELS</span></div>
       <div className="fleet-grid" aria-live="polite">{filtered.map((v,i)=><VehicleCard key={v.id} vehicle={v} index={i} onOpen={open}/>)}</div>
       <p className="fleet-disclaimer">※ 사진은 차종 안내용 이미지로, 실제 대여 차량의 색상·연식·트림과 다를 수 있습니다. 표시 금액은 제공받은 요금표 기준이며 차량 이용 가능 여부, 보험 및 세부 적용 조건은 전화로 확인해 주세요.</p>

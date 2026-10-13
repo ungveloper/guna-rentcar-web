@@ -2,5 +2,5 @@ import { PhoneLink } from "@/components/PhoneLink";
 import { Icon } from "@/components/Icon";
 
 export function MobileCallBar() {
-  return <div className="mobile-call-bar"><span>상담이 필요하신가요?<strong>051-866-1124</strong></span><PhoneLink placement="mobile_sticky"><Icon name="phone" size={18}/> 전화 문의</PhoneLink></div>;
+  return <div className="mobile-call-bar" aria-label="빠른 이동 및 전화 문의"><a className="mobile-call-bar__fleet" href="#fleet"><Icon name="car" size={18}/> 차량·요금</a><PhoneLink placement="mobile_sticky" className="mobile-call-bar__phone"><Icon name="phone" size={18}/> 전화 문의</PhoneLink></div>;
 }
