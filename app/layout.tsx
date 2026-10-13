@@ -10,13 +10,13 @@ const url = getSiteUrl();
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#f8f7f4",
+  themeColor: "#f6f2ec",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(url),
   title: "부산 렌터카 건아렌트카 | 단기·월·장기렌트·사고대차",
-  description: "부산 연제구 연산동 건아렌트카. 20년 운영 경험과 다양한 차량을 바탕으로 단기렌트, 월렌트, 장기렌트, 보험사고대차를 안내합니다. 차량 및 요금 문의 051-866-1124.",
+  description: "부산 연제구 연산동 건아렌트카. 약 20년 운영 경험, 15개 차종의 기준 대여 요금과 단기렌트, 월렌트, 장기렌트, 보험사고대차를 안내합니다. 차량 및 요금 문의 051-866-1124.",
   applicationName: site.name,
   alternates: { canonical: "/" },
   robots: { index: process.env.VERCEL_ENV !== "preview", follow: process.env.VERCEL_ENV !== "preview" },
