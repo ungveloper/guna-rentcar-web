@@ -11,52 +11,80 @@ import { site, navigation } from "@/data/site";
 import { services } from "@/data/services";
 
 const process = [
-  { n:"01", title:"차량 선택", en:"SELECT", desc:"차종과 기준 요금을 확인하고 이용 기간을 정해 주세요.", icon:"car" as const },
-  { n:"02", title:"전화 상담", en:"CALL", desc:"051-866-1124로 연락해 일정과 대여 조건을 확인합니다.", icon:"phone" as const },
-  { n:"03", title:"차량 인수", en:"PICK UP", desc:"협의된 일정에 건아렌트카 주차장에서 인수합니다.", icon:"key" as const },
-  { n:"04", title:"이용 후 반납", en:"RETURN", desc:"안내받은 일정과 조건에 맞춰 반납합니다.", icon:"check" as const },
+  { no: "01", name: "차량 둘러보기", description: "차종과 기준 요금을 먼저 비교해 보세요." },
+  { no: "02", name: "전화로 상담하기", description: "이용 일정, 대여 기간, 보험 조건을 확인합니다." },
+  { no: "03", name: "차량 인수하기", description: "협의한 시간에 건아렌트카 주차장에서 인수합니다." },
+  { no: "04", name: "편안하게 반납하기", description: "안내받은 장소와 일정에 맞춰 차량을 반납합니다." },
 ];
 const naverMap = `https://map.naver.com/p/search/${encodeURIComponent("건아렌트카 부산 연제구 반송로 68")}`;
 const googleMap = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.address)}`;
 
 export default function Home() {
- return <>
-   <a href="#main" className="skip-link">본문으로 바로가기</a>
-   <Header />
-   <main id="main">
-     <section className="hero" id="top" aria-labelledby="hero-title">
-       <div className="hero__ambient" aria-hidden="true"/>
-       <div className="container hero__inner">
-         <div className="hero__maincopy"><span className="hero__overline"><span className="hero__star">✳</span> BUSAN · GUN-A RENTCAR</span>
-           <h1 id="hero-title">다양한 선택.<br/>합리적인 <span>드라이브.</span></h1>
-           <p>부산 렌터카의 새로운 기준을 만나보세요.<br/>다양한 차량, 알기 쉬운 요금 안내, 편리한 전화 상담.</p>
-           <div className="hero__buttons"><a className="action action--dark" href="#fleet">차량 & 요금 보기 <Icon name="arrow" size={19}/></a><PhoneLink placement="hero" className="action action--text">전화 상담하기 <Icon name="arrow" size={19}/></PhoneLink></div>
-         </div>
-         <div className="hero__visual"><div className="hero__visual-heading" aria-hidden="true">THE RIGHT<br/>WAY TO DRIVE</div><Image src="/images/hero/studio-sedan.webp" alt="차량 선택의 분위기를 표현한 스튜디오 촬영 스타일의 콘셉트 세단 이미지" fill priority sizes="(max-width: 900px) 100vw, 62vw" className="hero__vehicle" /></div>
-         <div className="hero__bottom"><span><b>G</b> GO BEYOND ORDINARY.</span><span>01 / 15 <i/> SCROLL TO EXPLORE ↓</span></div>
-       </div>
-     </section>
+  return <>
+    <a className="skip-link" href="#main">본문으로 바로가기</a>
+    <Header />
+    <main id="main">
+      <section className="hero" id="top" aria-labelledby="hero-title">
+        <div className="hero__photo"><Image src="/images/vehicles/g80.webp" fill priority sizes="100vw" alt="제네시스 G80 자동차 사진" className="hero__image" /></div>
+        <div className="hero__shade" aria-hidden="true" />
+        <div className="container hero__content">
+          <span className="micro-label micro-label--light">GUN-A RENTCAR <span className="dot"/> BUSAN, KOREA</span>
+          <h1 id="hero-title">이동의 순간까지,<br/><span>당신답게.</span></h1>
+          <p className="hero__lead">다양한 선택, 합리적인 렌터카의 시작.<br/>부산 연산동에서 만나는 건아렌트카.</p>
+          <div className="hero__links"><a className="pill pill--white" href="#fleet">차량 라인업 보기 <Icon name="arrowRight" size={18}/></a><PhoneLink placement="hero" className="pill pill--glass"><Icon name="phone" size={17}/> 전화 상담</PhoneLink></div>
+          <div className="hero__bottom"><span>YOUR DRIVE. OUR COMMITMENT.</span><a href="#intro">스크롤하여 살펴보기 <span aria-hidden="true">↓</span></a></div>
+        </div>
+      </section>
 
-     <section className="intro-band" id="about" aria-labelledby="intro-title"><div className="container intro-band__inner"><div className="intro-band__headline"><span className="kicker">WELCOME TO GUN-A</span><h2 id="intro-title">이동의 시작부터 끝까지,<br/><i>건아렌트카.</i></h2></div><p>부산 연제구 연산동에서 약 20년의 렌터카 운영 경험을 쌓아왔습니다. 여행부터 출장, 장기 이용과 사고대차까지 필요한 차량을 안내합니다.</p><div className="intro-band__numbers"><div><strong>20<span>YEARS</span></strong><small>운영 경험</small></div><div><strong>50<span>VEHICLES</span></strong><small>약 50대 보유</small></div></div></div></section>
+      <section className="manifesto section-pad" id="intro" aria-labelledby="intro-title">
+        <div className="container manifesto__inner">
+          <span className="micro-label">THE GUN-A EXPERIENCE</span>
+          <h2 id="intro-title">좋은 이동은,<br/><span>좋은 선택에서.</span></h2>
+          <p>부산 렌터카가 필요한 순간. 합리적인 기준과 다양한 차종, 그리고 약 20년간 쌓아온 경험으로 여정에 어울리는 한 대를 안내합니다.</p>
+          <div className="manifesto__facts" aria-label="건아렌트카 주요 정보">
+            <div><strong>20<small>년</small></strong><span>렌터카 운영 경험</span></div>
+            <div><strong>50<small>대</small></strong><span>약 50대 차량 보유</span></div>
+            <div><strong>04</strong><span>맞춤형 렌트 서비스</span></div>
+          </div>
+        </div>
+      </section>
 
-     <section className="services-section section-pad" id="services" aria-labelledby="services-title"><div className="container"><div className="section-head section-head--split"><div><span className="kicker">OUR SERVICES / 렌트 서비스</span><h2 id="services-title">필요한 순간에 맞는<br/><i>네 가지 렌트 솔루션.</i></h2></div><p>잠깐 필요한 차량부터 오랫동안 함께할 차량까지.<br/>기간과 목적에 따라 편안하게 상담해 보세요.</p></div><div className="service-grid">
-      {services.map((s,i)=><article className="service-item" key={s.number}><div className="service-item__top"><span>{s.number} / {s.english}</span><Icon name={s.icon} size={25}/></div><div className="service-item__symbol" aria-hidden="true">0{i+1}</div><div className="service-item__bottom"><h3>{s.title}</h3><p>{s.description}</p><PhoneLink placement={`service_${s.number}`} aria-label={`${s.title} 전화 상담`} className="circle-action"><Icon name="arrow" size={22}/></PhoneLink></div></article>)}
-     </div></div></section>
+      <section className="feature-photo" id="about" aria-labelledby="about-title">
+        <Image src="/images/vehicles/gv80.webp" fill sizes="100vw" alt="현대적인 건물 앞에 놓인 제네시스 GV80" />
+        <div className="feature-photo__overlay"/>
+        <div className="container feature-photo__content">
+          <span className="micro-label micro-label--light">A NEW STANDARD OF DRIVE</span>
+          <h2 id="about-title">차에 대한 기준,<br/>조금 더 높게.</h2>
+          <p>경차부터 프리미엄 세단, SUV, 승합차까지.<br/>일상과 여행, 출장과 비즈니스에 어울리는 다양한 선택.</p>
+          <a className="inline-light-link" href="#fleet">보유 차량 살펴보기 <Icon name="arrowRight" size={19}/></a>
+        </div>
+        <span className="feature-photo__edge">DISCOVER MORE / GUN-A</span>
+      </section>
 
-     <Fleet />
+      <section className="services section-pad" id="services" aria-labelledby="services-title">
+        <div className="container">
+          <div className="section-intro"><span className="micro-label">01 / OUR SERVICES</span><h2 id="services-title">당신의 계획에 맞춰,<br/><span>더 유연하게.</span></h2><p>필요한 시간만큼, 원하는 방식으로. 부산 단기렌트부터 월렌트·장기렌트·보험사고대차까지 목적에 맞게 안내합니다.</p></div>
+          <div className="services-list">{services.map((s) => <article className="service-item" key={s.number}><div className="service-item__top"><span className="service-item__no">{s.number} / {s.english}</span><span className="service-item__icon"><Icon name={s.icon} size={27}/></span></div><h3>{s.title}</h3><p>{s.description}</p><PhoneLink placement={`service_${s.number}`} className="service-item__link">서비스 문의 <Icon name="arrowRight" size={18}/></PhoneLink></article>)}</div>
+        </div>
+      </section>
 
-     <section className="statement-section" id="benefits" aria-labelledby="statement-title"><div className="container statement-inner"><div className="statement-copy"><span className="kicker kicker--light">WHY CHOOSE GUN-A</span><h2 id="statement-title">좋은 차를 고르는 일.<br/><i>좋은 경험을 만드는 일.</i></h2><p>차량 선택부터 인수·반납까지, 건아렌트카는 당신의 이동에 필요한 정보를 명확하게 안내합니다.</p><div className="statement-points"><div><span>01</span><strong>다양한 차량 선택</strong><small>약 50대의 보유 차량</small></div><div><span>02</span><strong>합리적인 요금 안내</strong><small>차량별 기준 요금 공개</small></div><div><span>03</span><strong>유연한 이용 상담</strong><small>부산 전역 및 인근 지역 협의</small></div></div><a href="#contact" className="action action--light">건아렌트카 찾아오기 <Icon name="arrow" size={19}/></a></div><div className="statement-visual"><div className="statement-visual__circle"/><Image src="/images/hero/suv-concept.svg" alt="SUV 차급의 콘셉트 일러스트" width={1100} height={600}/><span>YOUR EVERYDAY DRIVE,<br/>REIMAGINED.</span></div></div></section>
+      <Fleet />
 
-     <section className="process-section section-pad" id="process" aria-labelledby="process-title"><div className="container"><div className="section-head section-head--split"><div><span className="kicker">HOW IT WORKS / 이용 방법</span><h2 id="process-title">쉽게 확인하고,<br/><i>편하게 이용하세요.</i></h2></div><p>복잡한 온라인 예약 없이 전화로 필요한 정보를 안내받고 이용하실 수 있습니다.</p></div><div className="process-grid">{process.map(p=><article key={p.n} className="process-item"><div><span className="process-item__number">{p.n}</span><Icon name={p.icon} size={30}/></div><span className="process-item__en">{p.en}</span><h3>{p.title}</h3><p>{p.desc}</p></article>)}</div><p className="process-footnote"><Icon name="clock" size={18}/> 영업시간 외 차량 인수·반납과 별도 픽업은 사전 협의가 필요합니다.</p></div></section>
+      <section className="dark-story" id="benefits" aria-labelledby="story-title">
+        <div className="dark-story__visual"><Image src="/images/vehicles/grandeur-gn7.webp" fill sizes="(max-width: 900px) 100vw, 56vw" alt="그랜저 GN7 측면 사진" /></div>
+        <div className="dark-story__copy"><span className="micro-label micro-label--light">02 / WHY GUN-A</span><h2 id="story-title">오랜 경험은,<br/>작은 차이를 만듭니다.</h2><p>약 20년 동안 부산 연제구 연산동에서 렌터카 서비스를 운영해 왔습니다. 필요한 차량을 찾는 순간부터 인수와 반납까지, 한 번 더 확인하고 더 명확하게 안내합니다.</p><div className="dark-story__lines"><span>연중무휴 운영</span><span>부산 전역 서비스 안내</span><span>김해·양산·창원 등 인근 지역 협의 가능</span></div><PhoneLink placement="story" className="inline-light-link">문의하기 <Icon name="arrowRight" size={19}/></PhoneLink></div>
+      </section>
 
-     <Reviews />
-     <FAQ />
+      <section className="how section-pad" id="process" aria-labelledby="process-title"><div className="container"><div className="section-intro"><span className="micro-label">03 / HOW IT WORKS</span><h2 id="process-title">예약은 복잡하게,<br/><span>할 필요 없으니까.</span></h2><p>온라인 예약 없이 전화로 정확한 조건을 확인합니다. 필요한 차량을 살펴본 뒤 편하게 연락해 주세요.</p></div><div className="how__steps">{process.map(s=><article key={s.no}><span>{s.no}</span><h3>{s.name}</h3><p>{s.description}</p></article>)}</div><div className="how__note"><Icon name="clock" size={19}/><p>영업시간 외 인수·반납 및 별도 픽업은 사전 협의가 필요합니다.</p></div></div></section>
 
-     <section className="contact-section section-pad" id="contact" aria-labelledby="contact-title"><div className="container"><div className="section-head section-head--split"><div><span className="kicker">FIND US / 오시는 길</span><h2 id="contact-title">부산 연산동,<br/><i>당신과 가까운 렌터카.</i></h2></div><p>차량 인수와 반납은 건아렌트카 주차장을 기본으로 합니다.<br/>위치 및 차량 이용 조건은 전화로 안내해 드립니다.</p></div><div className="contact-grid"><div className="contact-grid__card"><span>01 / LOCATION</span><h3>건아렌트카</h3><div className="contact-detail"><Icon name="pin" size={20}/><div><small>ADDRESS</small><strong>{site.address}</strong><p>연산역에서 도보 약 7분</p></div></div><div className="contact-detail"><Icon name="phone" size={20}/><div><small>CALL US</small><strong>{site.phoneDisplay}</strong><p>차량·가격·대여 조건 상담</p></div></div><div className="contact-detail"><Icon name="clock" size={20}/><div><small>BUSINESS HOURS</small><strong>연중무휴 운영</strong><p>영업시간 외 인수·반납은 사전 협의</p></div></div><div className="contact-grid__buttons"><a target="_blank" rel="noopener noreferrer" href={naverMap} className="action action--outline">네이버 지도 보기 <Icon name="arrow" size={19}/></a><a target="_blank" rel="noopener noreferrer" href={googleMap} className="contact-google">Google Maps ↗</a></div></div><div className="contact-grid__visual"><span className="contact-grid__caption">BUSAN<br/>YEONJE-GU</span><div className="contact-grid__big">GUN-A</div><span className="contact-grid__address">35°11′ N / 129°04′ E · BUSAN, KOREA</span><div className="contact-grid__mini"><Icon name="map" size={23}/><span>연제구 반송로 68<br/>차량 인수·반납 장소</span></div></div></div><p className="contact-footnote">{site.serviceArea}. {site.pickupNote}</p></div></section>
+      <Reviews />
+      <FAQ />
 
-     <section className="closing-section" aria-labelledby="closing-title"><div className="container closing-section__inner"><div><span className="kicker kicker--light">LET’S GET MOVING</span><h2 id="closing-title">당신의 다음 이동,<br/><i>건아렌트카와 함께.</i></h2><p>차량과 이용 기간을 알려주시면 전화로 자세히 안내해 드립니다.</p></div><PhoneLink placement="final_cta" className="closing-section__call"><Icon name="phone" size={23}/> {site.phoneDisplay} <Icon name="arrow" size={23}/></PhoneLink></div></section>
-   </main>
-   <footer className="footer"><div className="container footer-main"><div><Brand light footer/><p>다양한 선택, 합리적인 드라이브.<br/>부산 연산동 건아렌트카.</p></div><nav aria-label="하단 메뉴">{navigation.map(n=><a key={n.href} href={n.href}>{n.label}</a>)}<a href="#faq">자주 묻는 질문</a></nav></div><div className="container footer-bottom"><span>{site.legalName} · {site.address} · {site.phoneDisplay}</span><span>© 2026 GUN-A RENTCAR</span></div></footer>
-   <MobileCallBar/>
- </>;
+      <section className="visit section-pad" id="contact" aria-labelledby="visit-title"><div className="container visit__grid"><div className="visit__copy"><span className="micro-label">04 / LOCATION & CONTACT</span><h2 id="visit-title">부산에서,<br/><span>가까운 시작.</span></h2><p>부산광역시 연제구 반송로 68.<br/>연산역에서 도보 약 7분 거리에 있습니다.</p><div className="visit__detail"><strong>차량 인수·반납</strong><span>건아렌트카 주차장 (기본)</span></div><div className="visit__detail"><strong>운영 안내</strong><span>연중무휴 · 영업시간 외 인수·반납은 사전 협의</span></div><div className="visit__links"><a href={naverMap} target="_blank" rel="noopener noreferrer">네이버 지도 <Icon name="arrowRight" size={17}/></a><a href={googleMap} target="_blank" rel="noopener noreferrer">Google 지도 <Icon name="arrowRight" size={17}/></a></div></div><div className="visit__visual"><Image src="/images/vehicles/tucson.webp" fill sizes="(max-width: 900px) 100vw, 50vw" alt="건물 앞에 있는 현대 투싼 차량" /><div className="visit__visual-label">BUSAN · YEONSAN-DONG <Icon name="pin" size={16}/></div></div></div></section>
+
+      <section className="contact-cta" aria-labelledby="cta-title"><div className="container contact-cta__inner"><span className="micro-label micro-label--light">READY FOR THE NEXT DRIVE?</span><h2 id="cta-title">이제, 당신의 차례.</h2><p>필요한 차량과 일정을 알려주세요.<br/>건아렌트카가 전화로 안내해 드립니다.</p><PhoneLink placement="final_cta" className="pill pill--white"><Icon name="phone" size={18}/> 051-866-1124 <Icon name="arrowRight" size={18}/></PhoneLink></div></section>
+    </main>
+    <footer className="footer"><div className="container footer__top"><div><Brand footer light/><p>다양한 선택, 합리적인 렌터카의 시작.<br/>부산 연제구 연산동 건아렌트카</p></div><nav aria-label="하단 메뉴">{navigation.map(n=><a key={n.href} href={n.href}>{n.label}</a>)}<a href="#faq">FAQ</a></nav></div><div className="container footer__bottom"><div><strong>{site.legalName}</strong><span>{site.address}</span><span>대표전화 {site.phoneDisplay}</span></div><small>© 2026 GUN-A RENTCAR. ALL RIGHTS RESERVED.</small></div></footer>
+    <MobileCallBar />
+  </>;
 }

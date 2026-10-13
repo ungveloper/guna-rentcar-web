@@ -13,7 +13,7 @@ export type Vehicle = {
   brand: string;
   model: string;
   category: VehicleCategory;
-  /** Placeholder graphic only; replace with an image licensed for business use. */
+  /** User-supplied model photo; may differ from actual rental car specification. */
   image: string;
   imageAlt: string;
   rates: RentalRates;

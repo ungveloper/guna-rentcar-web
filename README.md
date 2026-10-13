@@ -1,6 +1,8 @@
 # 건아렌트카 / GUN-A RENTCAR
 
-Next.js 16.4 (App Router), React 19, Tailwind CSS 4 기반의 **부산 건아렌트카 원페이지 랜딩**입니다. 예약·회원·관리자 기능 없이 차량과 가격, 서비스, 실제 리뷰, 위치 및 전화 문의 정보를 안내합니다.
+Next.js 16 App Router, React 19, Tailwind CSS 4 기반의 **부산 건아렌트카 원페이지 랜딩**입니다.
+
+Apple 제품 소개 웹사이트의 스토리텔링·대형 비주얼·타이포그래피를 참고한 독립적인 프리미엄 자동차 쇼케이스 컨셉입니다. 온라인 예약·회원가입·관리자 기능은 없습니다.
 
 ## 로컬 실행
 
@@ -11,23 +13,21 @@ npm run lint
 npm run build
 ```
 
-## 데이터 관리
+## 실제 차량 및 이미지
 
-- `data/vehicles.ts`: 첨부된 4페이지 요금표 PDF에서 입력한 15개 차량, 시간별/일별 가격.
-- `data/services.ts`: 단기·월·장기·사고대차 서비스 설명.
-- `data/reviews.ts`: 운영자가 직접 검증한 네이버 플레이스 실제 리뷰.
-- `data/faqs.ts`: FAQ.
-- `data/site.ts`: 회사 정보·전화·주소.
-- `docs/VEHICLE_DATA_SOURCE.md`: PDF 근거, 이미지 제약 및 유지보수 유의사항.
+- `data/vehicles.ts`: 제공 PDF의 15개 모델 / 6·12시간 / 1~2일·3~6일·7일 이상 일일 요금
+- `public/images/vehicles/`: 사용자가 전달한 동일 모델 사진 WebP 15개
+- `components/Fleet.tsx`: 차량 필터, 이미지 그리드, `<dialog>` 기반 상세 요금표, 전화 문의
+- **사진은 차량 모델 홍보 이미지로 실제 대여 차량과 색상·연식·트림이 다를 수 있습니다.**
+- `docs/VEHICLE_DATA_SOURCE.md`: 자료 출처 및 라이선스·요금 유지보수 안내
 
-## 차량 사진 안내
+## 페이지 및 콘텐츠
 
-고객 제공 PDF에는 차량별 실물 사진이 없습니다. 카드에 들어간 SVG는 **차급 예시 이미지**이며 실제 차량 사진이 아닙니다. 히어로의 사진은 AI 생성 콘셉트입니다. 제조사 자료를 상업적으로 사용할 수 있는 권한이 확인되면 `public/images/vehicles/`에 추가하고 `data/vehicles.ts`의 `image` 경로를 교체하세요.
+- `app/page.tsx`: 히어로, 경험 수치, 차량 비주얼, 서비스 4종, 라인업, 운영 경험, 이용 절차, 후기, FAQ, 위치, 전화 CTA
+- `app/globals.css`: 디자인 토큰 및 모바일 대응 (추가 애니메이션 패키지 없음)
+- `data/reviews.ts`: 허락받은 실제 네이버 플레이스 후기만 직접 등록
+- `data/site.ts`, `data/services.ts`, `data/faqs.ts`: 콘텐츠 관리
 
-## 환경 변수
+## SEO / 배포
 
-`.env.example` 참조. 신규 도메인이 정해지면 `NEXT_PUBLIC_SITE_URL`에 최종 공개 도메인을 설정하고 검색엔진에 등록하세요. GA4 키는 선택 사항입니다.
-
-## 배포
-
-Vercel + 신규 도메인 연결. 메타데이터, robots.txt, sitemap.xml, AutoRental JSON-LD 포함. 전화 CTA는 `phone_click` GA4 이벤트로 연결되며 실제 발신·예약 완료를 의미하지 않습니다.
+`.env.example`에 따라 `NEXT_PUBLIC_SITE_URL`을 최종 도메인으로 설정하고 Vercel에 배포합니다. Google Search Console·네이버 서치어드바이저에 등록 후 수집 상태 확인. 페이지 메타데이터, OG 이미지, `robots.txt`, `sitemap.xml`, AutoRental 구조화 데이터를 유지합니다. GA4의 `phone_click`는 클릭만 측정합니다.

@@ -1,22 +1,13 @@
 import type { Vehicle, VehicleCategory, RentalRates } from "@/types/content";
 
 /**
- * Source: "건아렌트카 이용 요금 안내" PDF (4 pages, user supplied 2026-10-13).
- * Hourly 6/12h rates are unavailable for Carnival and Staria in the source.
- * Daily rates are PER DAY, with the bracket determined by the full rental period.
- * Vehicle photographs were NOT included in the PDF. The images below are explicitly
- * category illustrations, not representations of a specific manufacturer's vehicle.
+ * 요금 출처: 사용자 제공 "건아렌트카 이용 요금 안내" PDF (4쪽).
+ * 이미지 출처: 사용자가 제공한 아카이브(2).zip (모델별 15개 WebP).
+ * 사진은 제조사/차량 홍보 이미지로, 실제 대여 차량의 색상·연식·트림과 다를 수 있습니다.
+ * 카니발/스타리아 시간별 요금은 원본에 없어 정의하지 않습니다.
  */
-const art: Record<VehicleCategory, string> = {
-  compact: "/images/hero/sedan-concept.svg",
-  sedan: "/images/hero/sedan-concept.svg",
-  premium: "/images/hero/sedan-concept.svg",
-  suv: "/images/hero/suv-concept.svg",
-  van: "/images/hero/van-concept.svg",
-};
-
 function car(id: string, brand: string, model: string, category: VehicleCategory, rates: RentalRates, extra?: Partial<Vehicle>): Vehicle {
-  return { id, brand, model, category, rates, image: art[category], imageAlt: `${category === "van" ? "승합" : category === "suv" ? "SUV" : "승용"} 차급을 나타내는 콘셉트 이미지 (실제 ${model} 사진 아님)`, ...extra };
+  return { id, brand, model, category, rates, image: `/images/vehicles/${id}.webp`, imageAlt: `${model} 차량 소개 이미지`, ...extra };
 }
 
 export const vehicles: Vehicle[] = [
