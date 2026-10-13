@@ -2,27 +2,55 @@
 
 import { useEffect } from "react";
 
-/** Nonessential motion enhancement: the complete content remains server-rendered. */
+/** Optional scroll choreography: all page content remains available without JS. */
 export function ScrollEffects() {
-  useEffect(()=>{
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const elements=Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
-    if (!('IntersectionObserver' in window)) return;
-    const observer=new IntersectionObserver((entries)=>{
-      for (const entry of entries) if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
+  useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const progress = document.querySelector<HTMLElement>(".reading-progress");
+    const visuals = reducedMotion ? [] : Array.from(document.querySelectorAll<HTMLElement>("[data-scroll-visual]"));
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      const range = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      progress?.style.setProperty("transform", `scaleX(${Math.min(1, Math.max(0, window.scrollY / range))})`);
+
+      for (const element of visuals) {
+        const rect = element.getBoundingClientRect();
+        if (rect.bottom < -80 || rect.top > window.innerHeight + 80) continue;
+        const displacement = ((rect.top + rect.height / 2) - window.innerHeight / 2) / Math.max(1, window.innerHeight);
+        const shift = Math.min(28, Math.max(-28, displacement * -35));
+        element.style.setProperty("--scroll-shift", `${shift.toFixed(1)}px`);
       }
-    },{threshold:0.08,rootMargin:"0px 0px -25px 0px"});
-    elements.forEach((el)=>{if (el.getBoundingClientRect().top < window.innerHeight * 0.9) return;el.classList.add("will-reveal");observer.observe(el);});
-    const progress=document.querySelector<HTMLElement>(".reading-progress");
-    let raf=0;
-    const update=()=>{raf=0;if(progress){const max=document.documentElement.scrollHeight-window.innerHeight;progress.style.transform=`scaleX(${max>0?Math.min(1,Math.max(0,window.scrollY/max)):0})`;}};
-    const onScroll=()=>{if(!raf)raf=requestAnimationFrame(update);};
-    window.addEventListener("scroll",onScroll,{passive:true});
-    window.addEventListener("resize",onScroll);
+    };
+    const schedule = () => { if (!frame) frame = window.requestAnimationFrame(update); };
+
+    let observer: IntersectionObserver | undefined;
+    if (!reducedMotion && "IntersectionObserver" in window) {
+      const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer?.unobserve(entry.target);
+        });
+      }, { threshold: 0.07, rootMargin: "0px 0px -32px 0px" });
+      elements.forEach((element) => {
+        if (element.getBoundingClientRect().top < window.innerHeight * 0.9) return;
+        element.classList.add("will-reveal");
+        observer?.observe(element);
+      });
+    }
+
     update();
-    return ()=>{observer.disconnect();window.removeEventListener("scroll",onScroll);window.removeEventListener("resize",onScroll);if(raf)cancelAnimationFrame(raf);};
-  },[]);
-  return <div className="reading-progress" aria-hidden="true"/>;
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+  return <div className="reading-progress" aria-hidden="true" />;
 }

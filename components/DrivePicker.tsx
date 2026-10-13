@@ -6,9 +6,9 @@ import { Icon } from "@/components/Icon";
 import { vehicles } from "@/data/vehicles";
 
 const picks=[
-  {id:"ray",mood:"가볍게",sub:"THE CITY EDIT",line:"오늘의 이동을 더 자유롭게.",caption:"도시의 매일에 어울리는 선택"},
-  {id:"k5",mood:"스타일 있게",sub:"THE DAILY EDIT",line:"일상에도, 취향을 더해.",caption:"적당히 여유롭고, 충분히 감각적으로"},
-  {id:"gv80",mood:"특별하게",sub:"THE SIGNATURE EDIT",line:"기억에 남을 드라이브.",caption:"조금 더 특별한 날을 위한 선택"},
+  {id:"ray",mood:"가볍게",sub:"THE CITY EDIT",line:"도심 이동에 알맞은 경차.",caption:"가까운 거리부터 일상적인 이동까지"},
+  {id:"k5",mood:"스타일 있게",sub:"THE DAILY EDIT",line:"여유 있는 중형 세단.",caption:"출퇴근부터 출장까지 편리한 선택"},
+  {id:"gv80",mood:"특별하게",sub:"THE SIGNATURE EDIT",line:"넉넉한 공간의 대형 SUV.",caption:"장거리 이동과 여유로운 실내 공간"},
 ] as const;
 
 export function DrivePicker(){
@@ -18,7 +18,7 @@ export function DrivePicker(){
   if(!vehicle) return null;
   return <section className="drive-picker" aria-labelledby="drive-picker-title">
     <div className="container drive-picker__container">
-      <div className="drive-picker__intro" data-reveal><span className="micro-label">THE DRIVE EDIT / 2026</span><h2 id="drive-picker-title">기분에 따라,<br/><span>골라 타는 재미.</span></h2><p>한 번의 탭으로 취향에 맞는 차량을 만나보세요.</p></div>
+      <div className="drive-picker__intro" data-reveal><span className="micro-label">THE DRIVE EDIT / 2026</span><h2 id="drive-picker-title">이용 목적에 맞는 차량,<br/><span>쉽게 비교하세요.</span></h2><p>추천 차종을 선택하면 차량 사진과 기준 대여 요금을 바로 확인할 수 있습니다.</p></div>
       <div className="drive-picker__tabs" role="group" aria-label="추천 차량 선택">
         {picks.map((p,i)=><button type="button" key={p.id} onClick={()=>setSelected(i)} aria-pressed={i===selected} className={i===selected?"is-active":""}><span>0{i+1}</span>{p.mood}</button>)}
       </div>

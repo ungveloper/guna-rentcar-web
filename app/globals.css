@@ -180,3 +180,111 @@ body{background:#fff}
   .service-item,.fleet-card__visual img,.drive-picker__detail>a,.kinetic-hero__primary,.kinetic-hero__secondary{transition:none}
 }
 @media(max-width:760px){.mobile-call-bar a.mobile-call-bar__fleet,.mobile-call-bar a.mobile-call-bar__phone{display:flex;align-items:center;justify-content:center;gap:10px;padding:13px 12px;border-radius:100px;font-size:13px;white-space:nowrap}.mobile-call-bar a.mobile-call-bar__fleet{flex:1;background:#eceef0;color:#13161b}.mobile-call-bar a.mobile-call-bar__phone{flex:1.35;background:#13191c;color:#fff}}
+
+/* --------------------------------------------------------------------------
+ * 2026-10: fixed dialog positioning + readable mobile scroll story
+ * Native dialog must be explicitly centered: Tailwind preflight removes the
+ * user-agent auto margins which many browsers rely on for showModal().
+ * -------------------------------------------------------------------------- */
+.rate-dialog[open]{
+  position:fixed;
+  inset:50% auto auto 50%;
+  margin:0;
+  transform:translate(-50%,-50%);
+  width:min(1060px,calc(100vw - 36px));
+  max-width:calc(100vw - 36px);
+  max-height:calc(100dvh - 36px);
+  overflow:auto;
+  overscroll-behavior:contain;
+}
+.rate-dialog[open] .rate-dialog__inner{width:100%}
+@media(min-width:901px){
+  .rate-dialog[open]{animation:rate-dialog-enter .22s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes rate-dialog-enter{
+    from{opacity:.5;transform:translate(-50%,-48%) scale(.98)}
+    to{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  }
+}
+
+/* Smooth background movement on feature/visit photos: never shifts content. */
+[data-scroll-visual]{overflow:hidden;isolation:isolate}
+[data-scroll-visual] img{transform:translate3d(0,var(--scroll-shift,0px),0) scale(1.10);will-change:transform}
+
+/* Each scrollytelling chapter fills its progress segment as it is read. */
+.story-scroll__progress span{position:relative;overflow:hidden;background:#ffffff49!important}
+.story-scroll__progress span::after{content:"";position:absolute;inset:0 auto 0 0;width:var(--story-segment-fill,0%);background:var(--kinetic-lime);transition:width .1s linear}
+.story-scroll__scene.is-active{transform:translate3d(0,var(--story-image-offset,0px),0) scale(var(--story-image-scale,1.04))}
+.story-scroll__sticky{min-height:0}
+
+/* Add staggered rhythm to the customer journey as it scrolls into view. */
+.how__steps article[data-reveal]:nth-child(2){transition-delay:.08s}
+.how__steps article[data-reveal]:nth-child(3){transition-delay:.16s}
+.how__steps article[data-reveal]:nth-child(4){transition-delay:.24s}
+.manifesto__facts[data-reveal]{transition-duration:1s}
+
+@media(max-width:760px){
+  /* Tablet header remains 72px; the bottom call bar appears only <=600px. */
+  .story-scroll{height:320svh}
+  .story-scroll__sticky{top:72px;height:calc(100svh - 72px);min-height:0}
+  .story-scroll__inner{padding-top:clamp(18px,3svh,30px);padding-bottom:clamp(14px,2.5svh,24px)}
+  .story-scroll__copy{width:100%;min-height:0;padding-bottom:clamp(16px,3svh,32px)}
+  .story-scroll__copy-item{inset:auto 0 0}
+  .story-scroll__copy-item h2{font-size:clamp(35px,9.2vw,60px);line-height:1.08;letter-spacing:-.065em;margin:12px 0 10px}
+  .story-scroll__copy-item>p:first-child{font-size:10px;letter-spacing:.13em}
+  .story-scroll__description{font-size:clamp(12px,1.9vw,15px);line-height:1.58;margin:0}
+  .story-scroll__copy-item>a{margin-top:13px;font-size:12px;min-height:28px}
+  .story-scroll__footer{align-items:flex-end;gap:15px}
+  .story-scroll__vehicle>span{font-size:11px}
+  .story-scroll__vehicle strong{font-size:19px}
+  .story-scroll__progress{width:34%;padding-bottom:8px}
+}
+
+@media(max-width:600px){
+  /* Reserve the full fixed CTA including the iOS safe-area inset. */
+  .story-scroll__sticky{
+    top:63px;
+    height:calc(100svh - 63px - 76px - env(safe-area-inset-bottom,0px));
+    min-height:0;
+  }
+  .story-scroll__shade{background:linear-gradient(0deg,#080b10 0%,#080b10ef 25%,#080b10a0 50%,#080b1020 83%),linear-gradient(90deg,#080b1069,transparent 85%)}
+  .story-scroll__scene img{object-position:center 39%}
+  .story-scroll__intro{position:relative;z-index:2}
+  .story-scroll__copy{padding-bottom:12px}
+  .story-scroll__copy-item h2{font-size:clamp(36px,9.5vw,56px)}
+  .story-scroll__footer{position:relative;z-index:2}
+  .story-scroll__vehicle{gap:3px;max-width:67%;text-align:right}
+  .story-scroll__vehicle>small{font-size:9px}
+  .rate-dialog[open]{
+    inset:50% auto auto 50%;
+    margin:0;
+    transform:translate(-50%,-50%);
+    width:calc(100vw - 20px);
+    max-width:calc(100vw - 20px);
+    max-height:calc(100dvh - 24px);
+  }
+  .rate-dialog__photo{height:clamp(160px,25svh,235px)}
+  .rate-dialog__info{padding:24px 24px 28px}
+  .rate-dialog__info h3{font-size:clamp(26px,7vw,34px);margin:12px 0}
+  .rate-dialog__info>p{margin-bottom:13px}
+  .rate-group{margin:11px 0}
+  .rate-group h4{margin:12px 0 9px}
+  .rate-line{padding:6px 0}
+}
+
+@media(max-width:600px) and (max-height:690px){
+  .story-scroll__inner{padding-top:13px;padding-bottom:10px}
+  .story-scroll__tag{display:none}
+  .story-scroll__copy{padding-bottom:7px}
+  .story-scroll__copy-item h2{font-size:clamp(31px,8.6vw,46px);margin:8px 0}
+  .story-scroll__description{font-size:12px;line-height:1.48}
+  .story-scroll__copy-item>a{margin-top:8px}
+  .story-scroll__vehicle>small{display:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .rate-dialog[open]{animation:none}
+  [data-scroll-visual] img{transform:none;will-change:auto}
+  .story-scroll__scene.is-active{transform:none}
+  .story-scroll__progress span::after{transition:none}
+  .how__steps article[data-reveal]{transition-delay:0s}
+}

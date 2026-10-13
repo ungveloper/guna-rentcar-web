@@ -6,9 +6,9 @@ import { Icon } from "@/components/Icon";
 import { PhoneLink } from "@/components/PhoneLink";
 
 const moments = [
-  { id:"city", kicker:"01 / CITY DRIVE", name:"도시의 하루도,", highlight:"나답게 달려.", line:"가볍게 떠나는 일상부터 새로운 주말까지.", image:"/images/vehicles/g80.webp", alt:"제네시스 G80 차량 이미지", short:"CITY" },
-  { id:"weekend", kicker:"02 / WEEKEND MODE", name:"이번 주말은,", highlight:"조금 더 멀리.", line:"계획이 바뀌어도, 드라이브의 선택지는 넓게.", image:"/images/vehicles/gv80.webp", alt:"제네시스 GV80 차량 이미지", short:"WEEKEND" },
-  { id:"together", kicker:"03 / GO TOGETHER", name:"함께라서,", highlight:"더 특별하게.", line:"친구들과의 여행도, 가족과의 이동도 편안하게.", image:"/images/vehicles/carnival.webp", alt:"기아 더뉴카니발 9인승 차량 이미지", short:"TOGETHER" },
+  { id:"city", kicker:"01 / CITY DRIVE", name:"필요한 차량을,", highlight:"합리적인 요금으로.", line:"일상과 출장에 필요한 차량을 비교해 보세요.", image:"/images/vehicles/g80.webp", alt:"제네시스 G80 차량 이미지", short:"CITY" },
+  { id:"weekend", kicker:"02 / WEEKEND MODE", name:"주말 여행도,", highlight:"SUV로 편안하게.", line:"여행 일정과 인원에 맞는 차종을 선택하세요.", image:"/images/vehicles/gv80.webp", alt:"제네시스 GV80 차량 이미지", short:"WEEKEND" },
+  { id:"together", kicker:"03 / GO TOGETHER", name:"가족·단체 이동,", highlight:"넉넉한 승합차.", line:"가족 나들이와 단체 이동을 위한 차량 안내.", image:"/images/vehicles/carnival.webp", alt:"기아 더뉴카니발 9인승 차량 이미지", short:"TOGETHER" },
 ] as const;
 
 export function HeroStage() {
@@ -29,7 +29,7 @@ export function HeroStage() {
         <h1 id="hero-title">{moment.name}<br/><em>{moment.highlight}</em></h1>
         <p className="kinetic-hero__lead">{moment.line}<br/>다양한 선택, 합리적인 부산 렌터카.</p>
         <div className="kinetic-hero__actions">
-          <a className="kinetic-hero__primary" href="#fleet">내 차 찾아보기 <Icon name="arrowRight" size={19}/></a>
+          <a className="kinetic-hero__primary" href="#fleet">차량·요금 확인 <Icon name="arrowRight" size={19}/></a>
           <PhoneLink placement="hero" className="kinetic-hero__secondary">바로 전화하기 <Icon name="arrow" size={19}/></PhoneLink>
         </div>
       </div>
