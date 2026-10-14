@@ -288,3 +288,47 @@ body{background:#fff}
   .story-scroll__progress span::after{transition:none}
   .how__steps article[data-reveal]{transition-delay:0s}
 }
+
+
+/* 프로모션 캐러셀: CSS Modules 충돌을 방지하기 위해 전역 CSS 클래스로 관리 */
+.promo-section{position:relative;overflow:hidden;background:#f4f5f7;padding:100px 0 98px;color:#15181f}
+.promo-wrapper{width:min(100% - 96px,1360px);margin:0 auto}
+.promo-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:36px;margin-bottom:36px}
+.promo-kicker{display:flex;align-items:center;gap:9px;font-size:11px;letter-spacing:.17em;color:#8b7452;font-weight:800}
+.promo-dot{width:7px;height:7px;border-radius:50%;background:#b7a07b;box-shadow:0 0 0 4px rgba(183,160,123,.13)}
+.promo-heading h2{font-size:clamp(34px,4.25vw,58px);font-weight:780;letter-spacing:-.055em;line-height:1.14;margin:17px 0 14px;word-break:keep-all}
+.promo-titlePoint{color:#ab9168}
+.promo-heading p{font-size:15px;letter-spacing:-.025em;color:#767b83;margin:0;line-height:1.65;word-break:keep-all}
+.promo-toolbar{display:flex;align-items:center;gap:9px;flex-shrink:0;padding-bottom:3px}
+.promo-counter{color:#969aa3;font-size:12px;letter-spacing:.1em;margin-right:16px;font-variant-numeric:tabular-nums}
+.promo-counter strong{color:#16191f;font-weight:800}
+.promo-arrow{display:grid;place-items:center;border:1px solid #d8dbe0;background:#fff;color:#1c2028;border-radius:50%;width:45px;height:45px;transition:color .2s,background .2s,transform .2s,border-color .2s;font-size:20px;line-height:1}
+.promo-arrow:not(:disabled):hover{background:#1d222c;border-color:#1d222c;color:#fff;transform:translateY(-2px)}
+.promo-arrow:disabled{opacity:.36;cursor:default}
+.promo-viewport{position:relative;display:flex;gap:18px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding:0;scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior-x:contain;touch-action:pan-x pan-y;padding-bottom:4px}
+.promo-viewport::-webkit-scrollbar{display:none}
+.promo-card{scroll-snap-align:start;position:relative;display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate;overflow:hidden;border-radius:18px;flex:0 0 clamp(280px,28vw,348px);height:420px;background:#292f37;color:#fff;transition:transform .32s ease,box-shadow .32s ease;box-shadow:0 6px 19px rgba(30,34,41,.055)}
+.promo-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(15,17,20,.18)}
+.promo-image{object-fit:cover;transform:scale(1.015);transition:transform .65s cubic-bezier(.2,.8,.2,1)}
+.promo-card:hover .promo-image{transform:scale(1.08)}
+.promo-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,13,19,.46) 0%,rgba(10,13,19,.08) 23%,rgba(7,9,14,.28) 47%,rgba(7,9,14,.95) 100%);z-index:1}
+.promo-badge{position:absolute;z-index:2;left:22px;top:22px;border:1px solid rgba(255,255,255,.42);background:rgba(12,16,23,.3);backdrop-filter:blur(13px);color:#fff;border-radius:100px;padding:8px 12px;font-size:10px;font-weight:750;letter-spacing:.13em}
+.promo-serial{position:absolute;z-index:2;right:21px;top:25px;font-size:11px;font-weight:700;letter-spacing:.08em;color:#ffffffb8}
+.promo-cardContent{position:relative;z-index:2;display:flex;flex-direction:column;padding:29px 25px 25px;align-items:flex-start}
+.promo-eyebrow{font-size:10px;letter-spacing:.2em;font-weight:800;color:#d6c39e;margin-bottom:11px}
+.promo-cardTitle{font-size:clamp(24px,2.05vw,31px);font-weight:800;line-height:1.28;letter-spacing:-.058em;white-space:pre-line;word-break:keep-all}
+.promo-description{font-size:12px;color:#e6e8eb;line-height:1.58;margin-top:11px;min-height:37px;word-break:keep-all}
+.promo-finePrint{font-size:10px;line-height:1.5;color:#bdc1c7;margin-top:9px;word-break:keep-all}
+.promo-action{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;border-top:1px solid rgba(255,255,255,.3);margin-top:21px;padding-top:16px;font-size:12px;font-weight:750}
+.promo-action>span{width:29px;height:29px;display:grid;place-items:center;border-radius:50%;background:#fff;color:#111;font-size:17px}
+.promo-endSpacer{display:none}
+.promo-footer{display:flex;justify-content:space-between;align-items:center;margin-top:23px;gap:18px}
+.promo-dots{display:flex;align-items:center;gap:7px}
+.promo-dots button{display:block;background:#c7cad0;border:0;border-radius:30px;width:7px;height:7px;transition:width .25s ease,background .25s ease;padding:0}
+.promo-dots button.promo-dotActive{width:29px;background:#202631}
+.promo-hint{font-size:11px;color:#8d929a;white-space:nowrap}
+.promo-disclaimer{font-size:11px;color:#8d9299;margin:15px 0 0;line-height:1.5}
+@media(max-width:850px){.promo-section{padding:75px 0}.promo-wrapper{width:calc(100% - 48px)}.promo-heading{align-items:flex-start}.promo-heading h2{font-size:clamp(32px,5vw,47px)}.promo-card{flex-basis:clamp(270px,42vw,340px);height:404px}}
+@media(max-width:600px){.promo-section{padding:60px 0 64px}.promo-wrapper{width:calc(100% - 40px)}.promo-heading{margin-bottom:25px;gap:12px}.promo-heading h2{font-size:33px;margin:13px 0 8px}.promo-heading p{font-size:12px;line-height:1.6;max-width:260px}.promo-kicker{font-size:9px}.promo-toolbar{display:none}.promo-card{flex-basis:min(77vw,320px);height:384px;border-radius:16px}.promo-cardContent{padding:24px 19px 20px}.promo-cardTitle{font-size:25px}.promo-description{font-size:12px}.promo-eyebrow{font-size:9px}.promo-badge{top:17px;left:18px}.promo-serial{top:19px;right:18px}.promo-footer{margin-top:20px}.promo-hint{font-size:10px}.promo-disclaimer{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.promo-card,.promo-image,.promo-arrow,.promo-dots button{transition:none}.promo-card:hover{transform:none}.promo-card:hover .promo-image{transform:none}}
+

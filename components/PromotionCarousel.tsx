@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { visiblePromoCards } from "@/data/promotions";
-import styles from "./PromotionCarousel.module.css";
 
 export function PromotionCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -58,45 +57,45 @@ export function PromotionCarousel() {
   const activePromotions = visiblePromoCards.filter((card) => card.kind === "promotion").length;
 
   return (
-    <section className={styles.section} id="promotions" aria-labelledby="promotions-title">
-      <div className={styles.wrapper}>
-        <div className={styles.heading}>
+    <section className={"promo-section"} id="promotions" aria-labelledby="promotions-title">
+      <div className={"promo-wrapper"}>
+        <div className={"promo-heading"}>
           <div>
-            <div className={styles.kicker}><span className={styles.dot} /> WHAT&apos;S ON AT GUN-A</div>
-            <h2 id="promotions-title">이벤트와 이용 안내<span className={styles.titlePoint}>.</span></h2>
+            <div className={"promo-kicker"}><span className={"promo-dot"} /> WHAT&apos;S ON AT GUN-A</div>
+            <h2 id="promotions-title">이벤트와 이용 안내<span className={"promo-titlePoint"}>.</span></h2>
             <p>차량을 선택하기 전 알아두면 좋은 소식과 이용 정보를 확인하세요.</p>
           </div>
-          <div className={styles.toolbar}>
-            <span className={styles.counter} aria-live="polite"><strong>{String(activeIndex + 1).padStart(2, "0")}</strong> / {String(visiblePromoCards.length).padStart(2, "0")}</span>
-            <button className={styles.arrow} type="button" aria-label="이전 안내 카드" onClick={() => scrollToCard(activeIndex - 1)} disabled={!canPrev}><span aria-hidden="true">←</span></button>
-            <button className={styles.arrow} type="button" aria-label="다음 안내 카드" onClick={() => scrollToCard(activeIndex + 1)} disabled={!canNext}><span aria-hidden="true">→</span></button>
+          <div className={"promo-toolbar"}>
+            <span className={"promo-counter"} aria-live="polite"><strong>{String(activeIndex + 1).padStart(2, "0")}</strong> / {String(visiblePromoCards.length).padStart(2, "0")}</span>
+            <button className={"promo-arrow"} type="button" aria-label="이전 안내 카드" onClick={() => scrollToCard(activeIndex - 1)} disabled={!canPrev}><span aria-hidden="true">←</span></button>
+            <button className={"promo-arrow"} type="button" aria-label="다음 안내 카드" onClick={() => scrollToCard(activeIndex + 1)} disabled={!canNext}><span aria-hidden="true">→</span></button>
           </div>
         </div>
-        <div className={styles.viewport} ref={trackRef} onScroll={updatePosition} tabIndex={0} aria-label="프로모션 및 차량 이용 안내 카드 목록">
+        <div className={"promo-viewport"} ref={trackRef} onScroll={updatePosition} tabIndex={0} aria-label="프로모션 및 차량 이용 안내 카드 목록">
           {visiblePromoCards.map((card, index) => (
-            <a className={styles.card} href={card.href} key={card.id} data-promo-slide aria-label={`${card.title.replace("\n", " ")} - ${card.actionLabel}`}>
-              <Image className={styles.image} src={card.image} fill sizes="(max-width: 650px) 78vw, (max-width: 1050px) 43vw, 330px" alt={card.imageAlt} style={{ objectPosition: card.imagePosition ?? "center" }} />
-              <span className={styles.shade} aria-hidden="true" />
-              <span className={styles.badge}>{card.kind === "promotion" ? "EVENT" : "GUIDE"}</span>
-              <span className={styles.serial}>{String(index + 1).padStart(2, "0")}</span>
-              <span className={styles.cardContent}>
-                <span className={styles.eyebrow}>{card.eyebrow}</span>
-                <strong className={styles.cardTitle}>{card.title}</strong>
-                <span className={styles.description}>{card.description}</span>
-                {card.finePrint ? <span className={styles.finePrint}>{card.finePrint}</span> : null}
-                <span className={styles.action}>{card.actionLabel} <span aria-hidden="true">↗</span></span>
+            <a className={"promo-card"} style={{ position: "relative" }} href={card.href} key={card.id} data-promo-slide aria-label={`${card.title.replace("\n", " ")} - ${card.actionLabel}`}>
+              <Image className={"promo-image"} src={card.image} fill sizes="(max-width: 650px) 78vw, (max-width: 1050px) 43vw, 330px" alt={card.imageAlt} style={{ objectPosition: card.imagePosition ?? "center" }} />
+              <span className={"promo-shade"} aria-hidden="true" />
+              <span className={"promo-badge"}>{card.kind === "promotion" ? "EVENT" : "GUIDE"}</span>
+              <span className={"promo-serial"}>{String(index + 1).padStart(2, "0")}</span>
+              <span className={"promo-cardContent"}>
+                <span className={"promo-eyebrow"}>{card.eyebrow}</span>
+                <strong className={"promo-cardTitle"}>{card.title}</strong>
+                <span className={"promo-description"}>{card.description}</span>
+                {card.finePrint ? <span className={"promo-finePrint"}>{card.finePrint}</span> : null}
+                <span className={"promo-action"}>{card.actionLabel} <span aria-hidden="true">↗</span></span>
               </span>
             </a>
           ))}
-          <div className={styles.endSpacer} aria-hidden="true" />
+          <div className={"promo-endSpacer"} aria-hidden="true" />
         </div>
-        <div className={styles.footer}>
-          <div className={styles.dots} aria-label="안내 카드 바로가기">
-            {visiblePromoCards.map((card, index) => <button type="button" key={card.id} aria-label={`${index + 1}번째 카드로 이동`} aria-current={index === activeIndex ? "true" : undefined} className={index === activeIndex ? styles.dotActive : ""} onClick={() => scrollToCard(index)} />)}
+        <div className={"promo-footer"}>
+          <div className={"promo-dots"} aria-label="안내 카드 바로가기">
+            {visiblePromoCards.map((card, index) => <button type="button" key={card.id} aria-label={`${index + 1}번째 카드로 이동`} aria-current={index === activeIndex ? "true" : undefined} className={index === activeIndex ? "promo-dotActive" : ""} onClick={() => scrollToCard(index)} />)}
           </div>
-          <span className={styles.hint}>좌우로 넘겨 더 확인하세요 <span aria-hidden="true">↔</span></span>
+          <span className={"promo-hint"}>좌우로 넘겨 더 확인하세요 <span aria-hidden="true">↔</span></span>
         </div>
-        {activePromotions === 0 ? <p className={styles.disclaimer}>현재 별도로 등록된 할인 이벤트는 없으며, 위 내용은 차량별 기준 요금 및 서비스 안내입니다.</p> : null}
+        {activePromotions === 0 ? <p className={"promo-disclaimer"}>현재 별도로 등록된 할인 이벤트는 없으며, 위 내용은 차량별 기준 요금 및 서비스 안내입니다.</p> : null}
       </div>
     </section>
   );
