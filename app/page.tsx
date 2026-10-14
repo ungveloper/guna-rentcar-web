@@ -13,6 +13,7 @@ import { HeroStage } from "@/components/HeroStage";
 import { ScrollStory } from "@/components/ScrollStory";
 import { ScrollEffects } from "@/components/ScrollEffects";
 import { DrivePicker } from "@/components/DrivePicker";
+import { PromotionCarousel } from "@/components/PromotionCarousel";
 
 const process = [
   { no: "01", name: "차량 둘러보기", description: "차종과 기준 요금을 먼저 비교해 보세요." },
@@ -30,6 +31,7 @@ export default function Home() {
     <ScrollEffects />
     <main id="main">
       <HeroStage />
+      <PromotionCarousel />
 
       <section className="manifesto section-pad" id="intro" aria-labelledby="intro-title">
         <div className="container manifesto__inner">
