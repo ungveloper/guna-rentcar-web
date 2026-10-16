@@ -4,7 +4,7 @@
  * - 등록한 카드의 enabled를 false로 바꾸면 게시되지 않습니다.
  * - 허위 할인/기간 표기를 방지하기 위해 증빙된 내용만 등록합니다.
  * - 정적 페이지 특성상 노출 종료는 enabled 변경 후 재배포합니다.
- * - target은 /, #fleet, #services, #contact 등 내부 URL만 허용합니다.
+ * - 링크는 /#fleet, /services/short-term 등 사이트 루트 기준 URL로 설정합니다.
  */
 export type PromoCard = {
   id: string;
@@ -16,7 +16,7 @@ export type PromoCard = {
   image: string;
   imageAlt: string;
   imagePosition?: string;
-  href: `#${string}` | `/${string}`;
+  href: `/${string}`;
   actionLabel: string;
   enabled: boolean;
 };
@@ -28,7 +28,7 @@ export const promotions: PromoCard[] = [
   //   id: "october-event", kind: "promotion", eyebrow: "EVENT · 10월 한정",
   //   title: "공식적으로 확정된 이벤트 제목", description: "검증된 혜택과 조건",
   //   finePrint: "적용 기간/차종/제외 조건", image: "/images/vehicles/ray.webp",
-  //   imageAlt: "더뉴레이 차량", href: "#fleet", actionLabel: "대상 차량 확인",
+  //   imageAlt: "더뉴레이 차량", href: "/#fleet", actionLabel: "대상 차량 확인",
   //   enabled: false,
   // },
 ];
@@ -45,7 +45,7 @@ export const guideCards: PromoCard[] = [
     image: "/images/vehicles/ray.webp",
     imageAlt: "더뉴레이 차량",
     imagePosition: "center center",
-    href: "#fleet",
+    href: "/services/short-term",
     actionLabel: "차량별 요금 보기",
     enabled: true,
   },
@@ -59,7 +59,7 @@ export const guideCards: PromoCard[] = [
     image: "/images/vehicles/morning.webp",
     imageAlt: "더뉴모닝 차량",
     imagePosition: "center center",
-    href: "#fleet",
+    href: "/services/short-term",
     actionLabel: "단기 대여 요금 확인",
     enabled: true,
   },
@@ -72,7 +72,7 @@ export const guideCards: PromoCard[] = [
     image: "/images/vehicles/k5.webp",
     imageAlt: "더뉴K5 차량",
     imagePosition: "center center",
-    href: "#services",
+    href: "/services/long-term",
     actionLabel: "월·장기렌트 알아보기",
     enabled: true,
   },
@@ -85,7 +85,7 @@ export const guideCards: PromoCard[] = [
     image: "/images/vehicles/tucson.webp",
     imageAlt: "현대 투싼 차량",
     imagePosition: "center center",
-    href: "#services",
+    href: "/services/accident",
     actionLabel: "사고대차 안내",
     enabled: true,
   },
@@ -99,7 +99,7 @@ export const guideCards: PromoCard[] = [
     image: "/images/vehicles/grandeur-gn7.webp",
     imageAlt: "그랜저 GN7 차량",
     imagePosition: "center center",
-    href: "#contact",
+    href: "/#contact",
     actionLabel: "오시는 길 확인",
     enabled: true,
   },

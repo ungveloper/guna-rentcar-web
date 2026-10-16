@@ -1,18 +1,18 @@
 import Image from "next/image";
 import { Header } from "@/components/Header";
-import { Brand } from "@/components/Brand";
 import { Icon } from "@/components/Icon";
 import { PhoneLink } from "@/components/PhoneLink";
 import { MobileCallBar } from "@/components/MobileCallBar";
 import { Fleet } from "@/components/Fleet";
 import { Reviews } from "@/components/Reviews";
 import { FAQ } from "@/components/FAQ";
-import { site, navigation } from "@/data/site";
+import { site } from "@/data/site";
 import { services } from "@/data/services";
 import { HeroStage } from "@/components/HeroStage";
 import { ScrollStory } from "@/components/ScrollStory";
 import { ScrollEffects } from "@/components/ScrollEffects";
 import { DrivePicker } from "@/components/DrivePicker";
+import { SiteFooter } from "@/components/SiteFooter";
 import { PromotionCarousel } from "@/components/PromotionCarousel";
 
 const process = [
@@ -51,7 +51,7 @@ export default function Home() {
       <section className="services section-pad" id="services" aria-labelledby="services-title">
         <div className="container">
           <div className="section-intro" data-reveal><span className="micro-label">01 / OUR SERVICES</span><h2 id="services-title">단기부터 사고대차까지,<br/><span>목적에 맞는 렌트.</span></h2><p>필요한 시간만큼, 원하는 방식으로. 부산 단기렌트부터 월렌트·장기렌트·보험사고대차까지 목적에 맞게 안내합니다.</p></div>
-          <div className="services-list">{services.map((s) => <article className="service-item" data-reveal key={s.number}><div className="service-item__top"><span className="service-item__no">{s.number} / {s.english}</span><span className="service-item__icon"><Icon name={s.icon} size={27}/></span></div><h3>{s.title}</h3><p>{s.description}</p><PhoneLink placement={`service_${s.number}`} className="service-item__link">서비스 문의 <Icon name="arrowRight" size={18}/></PhoneLink></article>)}</div>
+          <div className="services-list">{services.map((s) => <article className="service-item" data-reveal key={s.number}><div className="service-item__top"><span className="service-item__no">{s.number} / {s.english}</span><span className="service-item__icon"><Icon name={s.icon} size={27}/></span></div><h3>{s.title}</h3><p>{s.description}</p><a href={s.href} className="service-item__link">자세히 보기 <Icon name="arrowRight" size={18}/></a></article>)}</div>
         </div>
       </section>
 
@@ -72,7 +72,7 @@ export default function Home() {
 
       <section className="contact-cta" aria-labelledby="cta-title"><div className="container contact-cta__inner"><span className="micro-label micro-label--light">READY FOR THE NEXT DRIVE?</span><h2 id="cta-title">차량·대여 조건,<br/>전화로 확인하세요.</h2><p>필요한 차량과 일정을 알려주세요.<br/>건아렌트카가 전화로 안내해 드립니다.</p><PhoneLink placement="final_cta" className="pill pill--white"><Icon name="phone" size={18}/> 051-866-1124 <Icon name="arrowRight" size={18}/></PhoneLink></div></section>
     </main>
-    <footer className="footer"><div className="container footer__top"><div><Brand footer light/><p>다양한 선택, 합리적인 렌터카의 시작.<br/>부산 연제구 연산동 건아렌트카</p></div><nav aria-label="하단 메뉴">{navigation.map(n=><a key={n.href} href={n.href}>{n.label}</a>)}<a href="#faq">FAQ</a></nav></div><div className="container footer__bottom"><div><strong>{site.legalName}</strong><span>{site.address}</span><span>대표전화 {site.phoneDisplay}</span></div><small>© 2026 GUN-A RENTCAR. ALL RIGHTS RESERVED.</small></div></footer>
+    <SiteFooter />
     <MobileCallBar />
   </>;
 }

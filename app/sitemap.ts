@@ -1,6 +1,19 @@
 import type { MetadataRoute } from "next";
 import { getSiteUrl } from "@/lib/seo";
 
+const pages = [
+  { path: "/", priority: 1, frequency: "weekly" },
+  { path: "/services/short-term", priority: 0.9, frequency: "monthly" },
+  { path: "/services/long-term", priority: 0.8, frequency: "monthly" },
+  { path: "/services/accident", priority: 0.8, frequency: "monthly" },
+  { path: "/events", priority: 0.7, frequency: "weekly" },
+] as const;
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [{ url: getSiteUrl(), changeFrequency: "monthly", priority: 1 }];
+  const origin = getSiteUrl();
+  return pages.map((page) => ({
+    url: new URL(page.path, origin).toString(),
+    changeFrequency: page.frequency,
+    priority: page.priority,
+  }));
 }

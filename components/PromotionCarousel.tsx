@@ -93,7 +93,7 @@ export function PromotionCarousel() {
           <div className={"promo-dots"} aria-label="안내 카드 바로가기">
             {visiblePromoCards.map((card, index) => <button type="button" key={card.id} aria-label={`${index + 1}번째 카드로 이동`} aria-current={index === activeIndex ? "true" : undefined} className={index === activeIndex ? "promo-dotActive" : ""} onClick={() => scrollToCard(index)} />)}
           </div>
-          <span className={"promo-hint"}>좌우로 넘겨 더 확인하세요 <span aria-hidden="true">↔</span></span>
+          <a className="promo-all-link" href="/events">이벤트 전체보기 <span aria-hidden="true">↗</span></a>
         </div>
         {activePromotions === 0 ? <p className={"promo-disclaimer"}>현재 별도로 등록된 할인 이벤트는 없으며, 위 내용은 차량별 기준 요금 및 서비스 안내입니다.</p> : null}
       </div>

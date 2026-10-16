@@ -15,10 +15,11 @@ export const site = {
 } as const;
 
 export const navigation = [
-  { href: "#about", label: "건아 소개" },
-  { href: "#services", label: "렌트 서비스" },
-  { href: "#fleet", label: "차량 안내" },
-  { href: "#process", label: "이용 방법" },
-  { href: "#reviews", label: "고객 후기" },
-  { href: "#contact", label: "오시는 길" },
+  { href: "/", label: "홈" },
+  { href: "/services/short-term", label: "단기렌트" },
+  { href: "/services/long-term", label: "월·장기렌트" },
+  { href: "/services/accident", label: "사고대차" },
+  { href: "/events", label: "이벤트" },
+  { href: "/#fleet", label: "차량·요금" },
+  { href: "/#contact", label: "오시는 길" },
 ] as const;
