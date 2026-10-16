@@ -8,8 +8,8 @@ export function SiteFooter() {
       <div className="container footer__top">
         <div><Brand light footer /><p>부산 연제구 연산동 건아렌트카.<br />차량별 요금과 렌트 서비스를 확인하세요.</p></div>
         <nav aria-label="하단 메뉴">
+          <Link href="/">홈</Link>
           {navigation.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
-          <Link href="/#faq">자주 묻는 질문</Link>
         </nav>
       </div>
       <div className="container footer__bottom">

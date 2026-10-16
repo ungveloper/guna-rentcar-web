@@ -14,12 +14,14 @@ export const site = {
   serviceArea: "부산 전 지역 · 김해·양산·창원 등 인근 지역은 협의 가능",
 } as const;
 
+/** 헤더·푸터·모바일 메뉴의 단일 출처. 모든 메뉴는 고유한 페이지 URL을 사용합니다. */
 export const navigation = [
-  { href: "/", label: "홈" },
+  { href: "/cars", label: "차량·요금" },
   { href: "/services/short-term", label: "단기렌트" },
   { href: "/services/long-term", label: "월·장기렌트" },
   { href: "/services/accident", label: "사고대차" },
   { href: "/events", label: "이벤트" },
-  { href: "/#fleet", label: "차량·요금" },
-  { href: "/#contact", label: "오시는 길" },
+  { href: "/guide", label: "이용안내" },
+  { href: "/contact", label: "오시는 길" },
 ] as const;
+

@@ -1,10 +1,12 @@
+import { vehicles } from "@/data/vehicles";
+
 /**
  * 건아렌트카 홈페이지 상단 프로모션·이용 안내.
  * - 실제 진행하는 프로모션은 promotions 배열에 등록합니다.
  * - 등록한 카드의 enabled를 false로 바꾸면 게시되지 않습니다.
  * - 허위 할인/기간 표기를 방지하기 위해 증빙된 내용만 등록합니다.
  * - 정적 페이지 특성상 노출 종료는 enabled 변경 후 재배포합니다.
- * - 링크는 /#fleet, /services/short-term 등 사이트 루트 기준 URL로 설정합니다.
+ * - 링크는 /cars, /services/short-term 등 사이트 루트 기준 URL로 설정합니다.
  */
 export type PromoCard = {
   id: string;
@@ -28,10 +30,17 @@ export const promotions: PromoCard[] = [
   //   id: "october-event", kind: "promotion", eyebrow: "EVENT · 10월 한정",
   //   title: "공식적으로 확정된 이벤트 제목", description: "검증된 혜택과 조건",
   //   finePrint: "적용 기간/차종/제외 조건", image: "/images/vehicles/ray.webp",
-  //   imageAlt: "더뉴레이 차량", href: "/#fleet", actionLabel: "대상 차량 확인",
+  //   imageAlt: "더뉴레이 차량", href: "/cars", actionLabel: "대상 차량 확인",
   //   enabled: false,
   // },
 ];
+
+const basicRate = (id: string, type: "hours6" | "days7plus") => {
+  const vehicle = vehicles.find((car) => car.id === id);
+  const amount = vehicle?.rates[type];
+  if (amount === undefined) throw new Error(`Missing ${type} rate for ${id}`);
+  return `${amount.toLocaleString("ko-KR")}원`;
+};
 
 /** 자료로 확인된 차종·요금·서비스를 안내하는 상시 콘텐츠입니다. */
 export const guideCards: PromoCard[] = [
@@ -39,9 +48,9 @@ export const guideCards: PromoCard[] = [
     id: "weekly-rental",
     kind: "guide",
     eyebrow: "PRICE GUIDE / 01",
-    title: "7일 이상 대여,\n1일 35,000원부터",
+    title: `7일 이상 대여,\n1일 ${basicRate("ray", "days7plus")}부터`,
     description: "일정이 길어질수록 달라지는 차량별 기준 요금을 확인하세요.",
-    finePrint: "더뉴모닝·더뉴레이 / 7일 이상 기준 · 1일 요금",
+    finePrint: `더뉴모닝·더뉴레이 / 7일 이상 기준 · 1일 ${basicRate("morning", "days7plus")} (차종별 확인)` ,
     image: "/images/vehicles/ray.webp",
     imageAlt: "더뉴레이 차량",
     imagePosition: "center center",
@@ -55,7 +64,7 @@ export const guideCards: PromoCard[] = [
     eyebrow: "SHORT-TERM / 02",
     title: "필요할 때,\n6시간부터 이용",
     description: "짧은 이동에도 기간과 차종에 맞는 요금으로 안내합니다.",
-    finePrint: "더뉴모닝·더뉴레이 / 6시간 대여 기준 40,000원",
+    finePrint: `더뉴모닝·더뉴레이 / 6시간 기준 ${basicRate("morning", "hours6")}`,
     image: "/images/vehicles/morning.webp",
     imageAlt: "더뉴모닝 차량",
     imagePosition: "center center",
@@ -99,7 +108,7 @@ export const guideCards: PromoCard[] = [
     image: "/images/vehicles/grandeur-gn7.webp",
     imageAlt: "그랜저 GN7 차량",
     imagePosition: "center center",
-    href: "/#contact",
+    href: "/contact",
     actionLabel: "오시는 길 확인",
     enabled: true,
   },

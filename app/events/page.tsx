@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { DetailHero } from "@/components/DetailHero";
 import { InnerPageShell } from "@/components/InnerPageShell";
 import { promotions, guideCards } from "@/data/promotions";
@@ -18,8 +19,8 @@ export default function EventsPage() {
     <DetailHero eyebrow="04 / EVENTS & NEWS" title="진행 중인 이벤트," accent="여기서 확인하세요." description="확정된 프로모션과 알아두면 좋은 차량 이용 정보를 안내합니다. 실제로 등록된 행사만 노출합니다." image="/images/vehicles/gv80.webp" imageAlt="제네시스 GV80 차량 이미지" detailLabel="이벤트" />
     <section className="detail-section" id="details"><div className="container"><div className="detail-heading"><span className="micro-label">ONGOING EVENTS</span><h2>진행 중인 이벤트</h2><p>이벤트 내용과 혜택은 등록된 실제 운영 정보를 기준으로 표시합니다. 이벤트별 적용 조건을 확인한 뒤 전화로 문의해 주세요.</p></div>
       {published.length === 0 ? <div className="detail-empty-event"><span>EVENTS / 00</span><h3>현재 등록된 진행 중 이벤트가 없습니다.</h3><p>새로운 이벤트가 확정되면 이 페이지에 안내하겠습니다. 아래 상시 차량 요금 및 렌트 서비스 정보는 언제든 확인할 수 있습니다.</p></div> :
-      <div className="detail-event-grid">{published.map((event) => <article className="detail-event" key={event.id}><div className="detail-event__photo"><Image src={event.image} alt={event.imageAlt} fill sizes="(max-width: 800px) 100vw, 45vw"/></div><div className="detail-event__body"><span>{event.eyebrow}</span><h3>{event.title}</h3><p>{event.description}</p>{event.finePrint && <small>{event.finePrint}</small>}<a href={event.href}>{event.actionLabel} →</a></div></article>)}</div>}
+      <div className="detail-event-grid">{published.map((event) => <article className="detail-event" key={event.id}><div className="detail-event__photo"><Image src={event.image} alt={event.imageAlt} fill sizes="(max-width: 800px) 100vw, 45vw"/></div><div className="detail-event__body"><span>{event.eyebrow}</span><h3>{event.title}</h3><p>{event.description}</p>{event.finePrint && <small>{event.finePrint}</small>}<Link href={event.href}>{event.actionLabel} →</Link></div></article>)}</div>}
     </div></section>
-    <section className="detail-section detail-section--soft"><div className="container"><div className="detail-heading"><span className="micro-label">RENTAL GUIDES</span><h2>차량 이용 안내</h2><p>아래 정보는 할인 이벤트가 아닌 상시 기준 요금 및 서비스 안내입니다.</p></div><div className="detail-guide-grid">{guides.map((guide) => <a className="detail-guide" href={guide.href} key={guide.id}><div className="detail-guide__photo"><Image src={guide.image} alt={guide.imageAlt} fill sizes="(max-width: 800px) 100vw, 28vw" /></div><div className="detail-guide__body"><span>{guide.eyebrow}</span><h3>{guide.title}</h3><p>{guide.description}</p>{guide.finePrint && <small>{guide.finePrint}</small>}<strong>{guide.actionLabel} ↗</strong></div></a>)}</div></div></section>
+    <section className="detail-section detail-section--soft"><div className="container"><div className="detail-heading"><span className="micro-label">RENTAL GUIDES</span><h2>차량 이용 안내</h2><p>아래 정보는 할인 이벤트가 아닌 상시 기준 요금 및 서비스 안내입니다.</p></div><div className="detail-guide-grid">{guides.map((guide) => <Link className="detail-guide" href={guide.href} key={guide.id}><div className="detail-guide__photo"><Image src={guide.image} alt={guide.imageAlt} fill sizes="(max-width: 800px) 100vw, 28vw" /></div><div className="detail-guide__body"><span>{guide.eyebrow}</span><h3>{guide.title}</h3><p>{guide.description}</p>{guide.finePrint && <small>{guide.finePrint}</small>}<strong>{guide.actionLabel} ↗</strong></div></Link>)}</div></div></section>
   </InnerPageShell>;
 }

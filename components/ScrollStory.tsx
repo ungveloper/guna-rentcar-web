@@ -2,13 +2,20 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Icon } from "@/components/Icon";
+import { vehicles } from "@/data/vehicles";
 
 const stories = [
-  { key: "city", index: "01", category: "CITY / COMPACT", title: "가벼운 도심 이동.", description: "가까운 일정과 일상적인 이동에 알맞은 경차를 살펴보세요.", car: "더뉴레이", image: "/images/vehicles/ray.webp", price: "50,000", label: "1~2일 기준 · 1일 요금" },
-  { key: "weekend", index: "02", category: "WEEKEND / SUV", title: "주말과 장거리 이동.", description: "여행 일정과 짐의 양에 맞춰 SUV를 선택할 수 있습니다.", car: "투싼", image: "/images/vehicles/tucson.webp", price: "120,000", label: "1~2일 기준 · 1일 요금" },
-  { key: "group", index: "03", category: "TOGETHER / VAN", title: "여럿이 함께하는 이동.", description: "가족 나들이와 단체 이동에 적합한 승합차를 확인해 보세요.", car: "더뉴카니발 9인승", image: "/images/vehicles/carnival.webp", price: "150,000", label: "1~2일 기준 · 1일 요금" },
+  { key: "city", index: "01", category: "CITY / COMPACT", title: "가벼운 도심 이동.", description: "가까운 일정과 일상적인 이동에 알맞은 경차를 살펴보세요.", vehicleId: "ray", label: "1~2일 기준 · 1일 요금" },
+  { key: "weekend", index: "02", category: "WEEKEND / SUV", title: "주말과 장거리 이동.", description: "여행 일정과 짐의 양에 맞춰 SUV를 선택할 수 있습니다.", vehicleId: "tucson", label: "1~2일 기준 · 1일 요금" },
+  { key: "group", index: "03", category: "TOGETHER / VAN", title: "여럿이 함께하는 이동.", description: "가족 나들이와 단체 이동에 적합한 승합차를 확인해 보세요.", vehicleId: "carnival", label: "1~2일 기준 · 1일 요금" },
 ] as const;
+const displayStories = stories.map((item) => {
+  const vehicle = vehicles.find((car) => car.id === item.vehicleId);
+  if (!vehicle) throw new Error(`Missing rental vehicle data: ${item.vehicleId}`);
+  return { ...item, car: vehicle.model, image: vehicle.image, price: vehicle.rates.days1to2.toLocaleString("ko-KR") };
+});
 
 const clamp = (value: number) => Math.min(1, Math.max(0, value));
 
@@ -32,8 +39,8 @@ export function ScrollStory() {
       const topOffset = Number.parseFloat(window.getComputedStyle(sticky).top) || 0;
       const travel = Math.max(1, section.offsetHeight - sticky.offsetHeight);
       const progress = clamp((topOffset - section.getBoundingClientRect().top) / travel);
-      const position = Math.min(stories.length - Number.EPSILON, progress * stories.length);
-      const nextActive = Math.min(stories.length - 1, Math.floor(position));
+      const position = Math.min(displayStories.length - Number.EPSILON, progress * displayStories.length);
+      const nextActive = Math.min(displayStories.length - 1, Math.floor(position));
       if (nextActive !== lastActiveRef.current) {
         lastActiveRef.current = nextActive;
         setActive(nextActive);
@@ -65,7 +72,7 @@ export function ScrollStory() {
     <section ref={sectionRef} className="story-scroll" id="about" aria-label="이용 목적별 추천 차량">
       <div className="story-scroll__sticky" ref={stickyRef}>
         <div className="story-scroll__media" aria-hidden="true">
-          {stories.map((story, index) => (
+          {displayStories.map((story, index) => (
             <div key={story.key} className={`story-scroll__scene ${index === active ? "is-active" : ""}`}>
               <Image fill sizes="(max-width: 800px) 100vw, 58vw" src={story.image} alt="" />
             </div>
@@ -78,25 +85,25 @@ export function ScrollStory() {
             <span className="story-scroll__tag">이용 목적에 맞춘 차량 안내</span>
           </div>
           <div className="story-scroll__copy" aria-live="off">
-            {stories.map((story, index) => (
+            {displayStories.map((story, index) => (
               <div key={story.key} className={`story-scroll__copy-item ${index === active ? "is-active" : ""}`} aria-hidden={index !== active}>
                 <p>{story.index} / {story.category}</p>
                 <h2>{story.title}</h2>
                 <p className="story-scroll__description">{story.description}</p>
-                <a href="#fleet" tabIndex={index === active ? 0 : -1}>
+                <Link href="/cars" tabIndex={index === active ? 0 : -1}>
                   전체 차량·요금 확인 <Icon name="arrowRight" size={18} />
-                </a>
+                </Link>
               </div>
             ))}
           </div>
           <div className="story-scroll__footer">
-            <div className="story-scroll__progress" ref={progressRef} aria-label={`차량 추천 ${active + 1}/${stories.length}`}>
-              {stories.map((story, index) => <span key={story.key} className={index <= active ? "is-active" : ""} />)}
+            <div className="story-scroll__progress" ref={progressRef} aria-label={`차량 추천 ${active + 1}/${displayStories.length}`}>
+              {displayStories.map((story, index) => <span key={story.key} className={index <= active ? "is-active" : ""} />)}
             </div>
             <div className="story-scroll__vehicle">
-              <span>{stories[active].car}</span>
-              <strong>{stories[active].price}원 <small>/ 1일</small></strong>
-              <small>{stories[active].label}</small>
+              <span>{displayStories[active].car}</span>
+              <strong>{displayStories[active].price}원 <small>/ 1일</small></strong>
+              <small>{displayStories[active].label}</small>
             </div>
           </div>
         </div>

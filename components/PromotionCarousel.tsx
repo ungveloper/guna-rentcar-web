@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { visiblePromoCards } from "@/data/promotions";
 
 export function PromotionCarousel() {
@@ -73,7 +74,7 @@ export function PromotionCarousel() {
         </div>
         <div className={"promo-viewport"} ref={trackRef} onScroll={updatePosition} tabIndex={0} aria-label="프로모션 및 차량 이용 안내 카드 목록">
           {visiblePromoCards.map((card, index) => (
-            <a className={"promo-card"} style={{ position: "relative" }} href={card.href} key={card.id} data-promo-slide aria-label={`${card.title.replace("\n", " ")} - ${card.actionLabel}`}>
+            <Link className={"promo-card"} style={{ position: "relative" }} href={card.href} key={card.id} data-promo-slide aria-label={`${card.title.replace("\n", " ")} - ${card.actionLabel}`}>
               <Image className={"promo-image"} src={card.image} fill sizes="(max-width: 650px) 78vw, (max-width: 1050px) 43vw, 330px" alt={card.imageAlt} style={{ objectPosition: card.imagePosition ?? "center" }} />
               <span className={"promo-shade"} aria-hidden="true" />
               <span className={"promo-badge"}>{card.kind === "promotion" ? "EVENT" : "GUIDE"}</span>
@@ -85,7 +86,7 @@ export function PromotionCarousel() {
                 {card.finePrint ? <span className={"promo-finePrint"}>{card.finePrint}</span> : null}
                 <span className={"promo-action"}>{card.actionLabel} <span aria-hidden="true">↗</span></span>
               </span>
-            </a>
+            </Link>
           ))}
           <div className={"promo-endSpacer"} aria-hidden="true" />
         </div>
@@ -93,7 +94,7 @@ export function PromotionCarousel() {
           <div className={"promo-dots"} aria-label="안내 카드 바로가기">
             {visiblePromoCards.map((card, index) => <button type="button" key={card.id} aria-label={`${index + 1}번째 카드로 이동`} aria-current={index === activeIndex ? "true" : undefined} className={index === activeIndex ? "promo-dotActive" : ""} onClick={() => scrollToCard(index)} />)}
           </div>
-          <a className="promo-all-link" href="/events">이벤트 전체보기 <span aria-hidden="true">↗</span></a>
+          <Link className="promo-all-link" href="/events">이벤트 전체보기 <span aria-hidden="true">↗</span></Link>
         </div>
         {activePromotions === 0 ? <p className={"promo-disclaimer"}>현재 별도로 등록된 할인 이벤트는 없으며, 위 내용은 차량별 기준 요금 및 서비스 안내입니다.</p> : null}
       </div>

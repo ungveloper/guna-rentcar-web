@@ -444,3 +444,34 @@ body{background:#fff}
   .mobile-nav{max-height:calc(100dvh - 64px)}
 }
 @media(prefers-reduced-motion:reduce){.detail-hero__photo img{animation:none;transform:none}.detail-guide,.detail-guide img,.detail-split__visual img{transition:none}.detail-guide:hover,.detail-split__visual:hover img{transform:none}}
+
+/* Dedicated pages: same vehicle, business and service data as the home preview. */
+.desktop-nav a[aria-current="page"],.mobile-nav a[aria-current="page"]{color:var(--gold-dark);font-weight:850}
+.fleet-grid--preview{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.fleet-preview__card{display:block;min-width:0;overflow:hidden}
+.fleet-preview__card .fleet-card__visual{display:block;position:relative;width:100%;border:0;cursor:pointer}
+.fleet-preview__card:hover .fleet-card__visual img{transform:scale(1.045)}
+.fleet-preview__card .fleet-card__details{display:flex;align-items:center;gap:10px;border:0;background:none;padding:15px 23px 22px;color:#181b20;font-size:13px;font-weight:700}
+.fleet-preview__all{display:flex;justify-content:center;margin-top:45px}
+.home-detail-links{background:#f5f6f8}
+.home-detail-links__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.home-detail-link{display:flex;flex-direction:column;justify-content:space-between;min-height:310px;padding:45px;border-radius:22px;background:#fff;border:1px solid #e2e3e6;transition:transform .3s,box-shadow .3s}
+.home-detail-link:hover{transform:translateY(-5px);box-shadow:0 20px 40px #00000010}
+.home-detail-link h2{font-size:clamp(26px,3vw,44px);line-height:1.17;margin:20px 0 12px}
+.home-detail-link p{font-size:14px;color:#777c84;max-width:390px}
+.home-detail-link>span:last-child{margin-top:25px;font-size:13px;font-weight:750;display:flex;gap:10px;align-items:center}
+.contact-detail__grid{display:grid;grid-template-columns:1fr 1fr;gap:6%;align-items:center}
+.contact-detail__grid h2{font-size:clamp(39px,4.5vw,66px);letter-spacing:-.06em;line-height:1.17;margin:23px 0}
+.contact-detail__facts{margin-top:35px;border-top:1px solid #dedfe4}
+.contact-detail__facts>div{display:grid;grid-template-columns:115px 1fr;gap:20px;padding:19px 0;border-bottom:1px solid #dedfe4;font-size:14px;line-height:1.7}
+.contact-detail__facts dt{color:#717680}
+.contact-detail__facts dd{margin:0;font-weight:630;word-break:keep-all}
+.contact-detail__facts dd a{text-decoration:underline;text-underline-offset:4px}
+.contact-detail__actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:28px}
+.contact-detail__map{border:1px solid #d5d8de;color:#171a20}
+.contact-detail__image{position:relative;min-height:620px;border-radius:22px;overflow:hidden;background:#151923}
+.contact-detail__image img{object-fit:cover}
+.guide-how__steps{margin-bottom:35px}
+@media(max-width:1180px){.fleet-grid--preview{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:900px){.contact-detail__grid{grid-template-columns:1fr}.contact-detail__image{min-height:430px}}
+@media(max-width:600px){.fleet-grid--preview{grid-template-columns:1fr}.home-detail-links__grid{grid-template-columns:1fr}.home-detail-link{min-height:255px;padding:28px}.contact-detail__image{min-height:300px}.contact-detail__facts>div{grid-template-columns:90px 1fr;gap:12px}.contact-detail__actions .pill{flex:1;padding:14px 12px;font-size:12px}}
