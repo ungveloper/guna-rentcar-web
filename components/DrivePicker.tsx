@@ -25,7 +25,7 @@ export function DrivePicker(){
       </div>
       <div className="drive-picker__stage">
         <div className="drive-picker__media" key={vehicle.id}><Image src={vehicle.image} alt={`${vehicle.model} 차량 사진`} fill sizes="(max-width: 760px) 100vw, 65vw" /></div>
-        <div className="drive-picker__detail"><span>{current.sub}</span><h3>{current.line}</h3><p>{current.caption}</p><div className="drive-picker__meta"><span>{vehicle.model}</span><strong>{vehicle.rates.days1to2.toLocaleString("ko-KR")}원 <small>/ 1일</small></strong><small>1~2일 대여 기준</small></div><Link href={`/cars#vehicle-${vehicle.id}`}>이 차 자세히 보기 <Icon name="arrowRight" size={18}/></Link></div>
+        <div className="drive-picker__detail"><span>{current.sub}</span><h3>{current.line}</h3><p>{current.caption}</p><div className="drive-picker__meta"><span>{vehicle.model}</span><strong>{vehicle.rates.days1to2.toLocaleString("ko-KR")}원 <small>/ 1일</small></strong><small>1~2일 대여 기준</small></div><Link href="/cars">이 차 자세히 보기 <Icon name="arrowRight" size={18}/></Link></div>
       </div>
     </div>
   </section>;
