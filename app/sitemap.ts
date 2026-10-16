@@ -4,7 +4,9 @@ import { getSiteUrl } from "@/lib/seo";
 const pages = [
   { path: "/", priority: 1, frequency: "weekly" },
   { path: "/cars", priority: 0.95, frequency: "weekly" },
+  { path: "/services", priority: 0.85, frequency: "monthly" },
   { path: "/services/short-term", priority: 0.9, frequency: "monthly" },
+  { path: "/services/monthly", priority: 0.85, frequency: "monthly" },
   { path: "/services/long-term", priority: 0.8, frequency: "monthly" },
   { path: "/services/accident", priority: 0.8, frequency: "monthly" },
   { path: "/events", priority: 0.7, frequency: "weekly" },

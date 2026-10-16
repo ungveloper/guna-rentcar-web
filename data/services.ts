@@ -10,7 +10,7 @@ export const services = [
   },
   {
     number: "02",
-    href: "/services/long-term",
+    href: "/services/monthly",
     title: "월렌트",
     english: "MONTHLY",
     description: "한 달 정도 차가 필요한 상황에 맞춰. 차량 이용 기간과 목적에 따라 선택을 도와드립니다.",

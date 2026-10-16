@@ -18,7 +18,8 @@ export const site = {
 export const navigation = [
   { href: "/cars", label: "차량·요금" },
   { href: "/services/short-term", label: "단기렌트" },
-  { href: "/services/long-term", label: "월·장기렌트" },
+  { href: "/services/monthly", label: "월렌트" },
+  { href: "/services/long-term", label: "장기렌트" },
   { href: "/services/accident", label: "사고대차" },
   { href: "/events", label: "이벤트" },
   { href: "/guide", label: "이용안내" },

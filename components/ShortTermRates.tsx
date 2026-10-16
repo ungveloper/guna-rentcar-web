@@ -7,14 +7,15 @@ export function ShortTermRates() {
   return (
     <div className="detail-rate-scroll" role="region" aria-label="차량별 단기렌트 요금표" tabIndex={0}>
       <table className="detail-rates">
-        <caption className="sr-only">차량별 6시간·12시간·1~2일 및 3~6일 기준 요금</caption>
-        <thead><tr><th scope="col">차량</th><th scope="col">6시간</th><th scope="col">12시간</th><th scope="col">1~2일 <small>/ 1일</small></th><th scope="col">3~6일 <small>/ 1일</small></th></tr></thead>
+        <caption className="sr-only">차량별 6시간·12시간 및 1~2일·3~6일·7일 이상 대여 시 1일 기준 요금</caption>
+        <thead><tr><th scope="col">차량</th><th scope="col">6시간</th><th scope="col">12시간</th><th scope="col">1~2일 <small>/ 1일</small></th><th scope="col">3~6일 <small>/ 1일</small></th><th scope="col">7일 이상 <small>/ 1일</small></th></tr></thead>
         <tbody>{vehicles.map((car) => (
           <tr key={car.id}>
             <th scope="row"><span className="detail-rate-brand">{car.brand}</span>{car.model}</th>
             <td>{won(car.rates.hours6)}</td><td>{won(car.rates.hours12)}</td>
             <td className="detail-rate-key">{won(car.rates.days1to2)}</td>
             <td>{won(car.rates.days3to6)}</td>
+            <td>{won(car.rates.days7plus)}</td>
           </tr>
         ))}</tbody>
       </table>

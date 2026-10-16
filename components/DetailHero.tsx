@@ -11,11 +11,12 @@ type Props = {
   image: string;
   imageAlt: string;
   detailLabel: string;
+  breadcrumbParent?: { label: string; href: string };
 };
 
-export function DetailHero({ eyebrow, title, accent, description, image, imageAlt, detailLabel }: Props) {
+export function DetailHero({ eyebrow, title, accent, description, image, imageAlt, detailLabel, breadcrumbParent }: Props) {
   return <>
-    <nav className="detail-breadcrumb container" aria-label="현재 위치"><Link href="/">홈</Link><span aria-hidden="true">/</span><span>{detailLabel}</span></nav>
+    <nav className="detail-breadcrumb container" aria-label="현재 위치"><Link href="/">홈</Link>{breadcrumbParent && <><span aria-hidden="true">/</span><Link href={breadcrumbParent.href}>{breadcrumbParent.label}</Link></>}<span aria-hidden="true">/</span><span aria-current="page">{detailLabel}</span></nav>
     <section className="detail-hero" aria-labelledby="detail-hero-title">
       <div className="detail-hero__photo"><Image src={image} alt={imageAlt} fill priority sizes="100vw" /></div>
       <div className="detail-hero__scrim" />
