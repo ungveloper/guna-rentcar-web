@@ -82,3 +82,15 @@ img{max-width:100%}h1,h2,h3,p{margin:0}h1,h2,h3{line-height:1.25;letter-spacing:
 .route-preview-inner p{font-size:14px;color:#b9c1b6;line-height:1.8}
 .route-preview-inner .button{flex:0 0 auto}
 @media(max-width:760px){.route-preview-band{padding:58px 0}.route-preview-inner{align-items:flex-start;flex-direction:column;gap:22px}}
+
+/* Independent route hub: the fleet explorer is intentionally not rendered on home. */
+.fleet-route-section { background: var(--cream); }
+.fleet-route-inner { display: flex; align-items: center; justify-content: space-between; gap: 38px; }
+.fleet-route-inner > div { max-width: 720px; }
+.fleet-route-inner h2 { margin: 18px 0 22px; font-size: clamp(34px, 4.4vw, 60px); line-height: 1.22; letter-spacing: -.06em; }
+.fleet-route-inner p { max-width: 600px; color: var(--muted); line-height: 1.9; font-size: 15px; }
+.fleet-route-button { flex-shrink: 0; }
+@media (max-width: 760px) {
+ .fleet-route-inner { flex-direction: column; align-items: flex-start; gap: 26px; }
+ .fleet-route-button { width: 100%; }
+}
