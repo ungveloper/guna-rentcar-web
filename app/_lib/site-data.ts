@@ -121,9 +121,44 @@ export const faqs: Faq[] = [
   { id:"term",category:"기간·변경",question:"대여 기간 연장이 가능한가요?",answer:"이용 기간 연장은 차량 일정 및 계약 조건에 따라 협의할 수 있습니다. 연장이 필요하면 가능한 한 미리 전화해 주세요.",services:["monthly","short-term","long-term"] },
 ];
 
-export type EventItem = { id: string; title: string; benefitGuide: string; startDate: string; endDate: string; isEnabled: boolean; services: ServiceKey[] };
-// No publicly verified active promotion dates or terms yet. Empty = event section hidden.
-export const events: EventItem[] = [];
+/**
+ * Published event rules for the first website release.
+ * `target: "all"` appears on every public page.
+ * `target: "accident"` is shown ONLY on /services/accident alongside common events.
+ * Dates are inclusive, interpreted in Asia/Seoul (KST).
+ * Pricing details, stacking and eligibility still require telephone confirmation.
+ */
+export type EventItem = {
+  id: string;
+  title: string;
+  benefitGuide: string;
+  startDate: string;
+  endDate: string;
+  isEnabled: boolean;
+  target: "all" | "accident";
+};
+export const events: EventItem[] = [
+  {
+    id: "prelaunch-5000",
+    title: "홈페이지 오픈 전 전 차량 5,000원 할인",
+    benefitGuide:
+      "2026년 11월 1일부터 12월 31일까지 진행되는 전 차량 5,000원 할인 이벤트입니다. 할인 적용 기준, 다른 혜택과의 중복 적용 및 최종 이용 조건은 예약 전 전화 상담으로 확인해 주세요.",
+    startDate: "2026-11-01",
+    endDate: "2026-12-31",
+    isEnabled: true,
+    target: "all",
+  },
+  {
+    id: "accident-fuel-10000",
+    title: "사고대차 직접 문의 시 1일 유류비 10,000원 지원",
+    benefitGuide:
+      "2026년 11월 1일부터 12월 31일까지 사고대차를 건아렌트카에 직접 문의하시는 고객을 위한 1일 유류비 10,000원 지원 특전입니다. 사고·보험 조건, 지원 대상, 지급 방식, 적용 일수 및 전 차량 할인과의 중복 적용 가능 여부는 전화 상담 시 확인해 주세요.",
+    startDate: "2026-11-01",
+    endDate: "2026-12-31",
+    isEnabled: true,
+    target: "accident",
+  },
+];
 
 export const reviewPlaceholders = ["차량 청결", "친절한 상담", "유연한 일정", "차량 상태", "재방문 경험", "이용 편의성"];
 

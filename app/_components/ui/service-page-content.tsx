@@ -5,7 +5,6 @@ import Icon from "./icon";
 import PageHero from "./page-hero";
 import VehicleExplorer from "./vehicle-explorer";
 import FaqList from "./faq-list";
-import EventSection from "./event-section";
 import CtaBand from "./cta-band";
 export default function ServicePageContent({service}:{service:Service}){
  const quoteOnly=service.key!=="short-term";
@@ -16,6 +15,6 @@ export default function ServicePageContent({service}:{service:Service}){
   <section className="bg-white px-5 py-20 sm:px-8 sm:py-24"><div className="mx-auto max-w-[1320px]"><span className="text-xs font-extrabold tracking-[.2em] text-[#AA895B]">03 / HOW IT WORKS</span><h2 className="mt-5 text-[clamp(30px,4vw,52px)] font-black tracking-[-.06em] text-[#1c2929]">이용은 생각보다 간단해요.</h2><div className="mt-10 grid gap-4 md:grid-cols-3">{service.steps.map((s,i)=><article key={s.title} className="border-t-2 border-[#1c2929] pt-6"><span className="text-[12px] font-black text-[#AA895B]">STEP 0{i+1}</span><h3 className="mt-6 text-[23px] font-bold tracking-[-.05em] text-[#24302c]">{s.title}</h3><p className="mt-3 max-w-xs text-sm leading-8 text-[#758079]">{s.detail}</p></article>)}</div></div></section>
   <section className="bg-[#f5f7f4] px-5 py-20 sm:px-8 sm:py-28"><div className="mx-auto max-w-[1320px]"><span className="text-xs font-extrabold tracking-[.2em] text-[#AA895B]">04 / FIND YOUR CAR</span><h2 className="mt-5 text-[clamp(30px,4vw,52px)] font-black tracking-[-.06em] text-[#1c2929]">함께할 차량을 찾아보세요.</h2><p className="mb-10 mt-4 text-sm leading-8 text-[#7e887e]">전체 등록 차종을 안내합니다. {quoteOnly?"요금은 상담을 통해 개별 안내합니다.":"일부 차량의 시간별 참고 요금을 확인할 수 있습니다."}</p><VehicleExplorer variant="service" service={service.key as ServiceKey} quoteOnly={quoteOnly}/><div className="mt-10 flex flex-col gap-5 rounded-[23px] border border-[#e4eae3] bg-white p-7 md:flex-row md:items-center md:justify-between"><div className="flex items-start gap-4"><span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#f1eadf] text-[#AA895B]"><Icon name="shield" size={22}/></span><div><h3 className="text-lg font-bold text-[#24332b]">완전자차보험 기본 포함</h3><p className="mt-2 text-sm leading-7 text-[#7a847b]">자기부담금·휴차료 및 보상 제외 조건은 계약 전 확인해 주세요.</p></div></div><Link href="/faq" className="shrink-0 rounded-full border border-[#d6ded4] px-6 py-3 text-sm font-bold text-[#4c5f50] transition hover:border-[#AA895B]">보험 내용 확인 <Icon name="arrow-up" size={14} className="ml-1 inline"/></Link></div></div></section>
   <section className="bg-white px-5 py-20 sm:px-8 sm:py-24"><div className="mx-auto max-w-[1000px]"><span className="text-xs font-extrabold tracking-[.2em] text-[#AA895B]">05 / FAQ</span><h2 className="mb-10 mt-5 text-[clamp(30px,4vw,46px)] font-black tracking-[-.05em] text-[#1c2929]">{service.title}, 자주 묻는 질문</h2><FaqList items={faqs.filter(f=>f.services.includes(service.key)).slice(0,5)}/><Link href="/faq" className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#AA895B] hover:underline">FAQ 전체 보기 <Icon name="arrow-up" size={17}/></Link></div></section>
-  <EventSection service={service.key as ServiceKey}/><CtaBand compact/>
+  <CtaBand compact/>
  </div>;
 }
