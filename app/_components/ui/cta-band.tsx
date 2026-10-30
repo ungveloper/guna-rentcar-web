@@ -1,12 +1,5 @@
 "use client";
+import { BRAND } from "../../_lib/site-data";
+import { useConsult } from "./consult-provider";
 import Icon from "./icon";
-import {useConsult} from "./consult-provider";
-import {BRAND} from "../../_lib/site-data";
-export default function CtaBand({compact=false}:{compact?:boolean}){
-  const {openChooser}=useConsult();
-  return <section className={`cta-band ${compact?"cta-compact":""}`} aria-label="상담 안내">
-    <div className="cta-orb one"/><div className="cta-orb two"/>
-    <div className="container cta-body"><div><span className="eyebrow light">LET’S TALK ABOUT YOUR DRIVE</span><h2>어떤 일정이든,<br/><em>편하게 문의해 주세요.</em></h2><p>고객의 상황과 일정에 맞는 차량과 이용 방법을<br className="desktop-only"/> 친절하게 안내해 드립니다.</p></div>
-    <div className="cta-actions"><button type="button" className="button button-white" onClick={()=>openChooser()}>상담하기 <Icon name="arrow-up" size={18}/></button><a href={BRAND.tel} className="cta-number" aria-label={`전화 상담 ${BRAND.phone}`}><Icon name="phone" size={16}/>{BRAND.phone}</a><span>연중무휴 · 24시간 전화 상담</span></div></div>
-  </section>;
-}
+export default function CtaBand({compact=false}:{compact?:boolean}){const {openChooser}=useConsult();return <section className={`bg-[#AA895B] px-5 text-white ${compact?"py-16":"py-20 sm:py-24"}`}><div className="mx-auto flex max-w-[1280px] flex-col items-start justify-between gap-10 md:flex-row md:items-end"><div><span className="text-xs font-bold tracking-[.22em] text-white/70">LET&apos;S TALK ABOUT YOUR DRIVE</span><h2 className="mt-5 text-[36px] font-extrabold leading-[1.24] tracking-[-.05em] sm:text-[55px]">어떤 일정이든,<br/>편하게 문의해 주세요.</h2><p className="mt-5 text-sm leading-7 text-white/80 sm:text-base">고객의 상황과 일정에 맞는 차량과 이용 방법을 친절하게 안내해 드립니다.</p></div><div className="flex flex-col items-start gap-4"><button type="button" onClick={()=>openChooser()} className="flex items-center gap-5 rounded-xl bg-white px-7 py-4 font-bold text-[#6f5435] hover:bg-[#f8f4eb]">상담하기 <Icon name="arrow-up" size={18}/></button><a href={BRAND.tel} className="text-xl font-bold">{BRAND.phone}</a><span className="text-xs text-white/75">24시간 전화 상담</span></div></div></section>}

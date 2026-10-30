@@ -1,20 +1,5 @@
-# GUNA RENTCAR — independent routes update
+# 독립 페이지 라우팅 변경 이력
 
-This update changes the **home page into a navigation hub**, not a single-page scrolling site.
+현재 독립 URL 및 각 디렉터리의 layout.tsx/page.tsx 구조는 `docs/ROUTING_TAILWIND_V4.md`를 기준으로 합니다.
 
-- `/` contains the hero, service links, a fleet-directory link, a company intro link and links to other pages.
-- `/cars` contains the **full** vehicle search/filter/price sorting interface, and it is directly addressable.
-- `/services/monthly`, `/services/short-term`, `/services/long-term`, `/services/accident` are independent service pages.
-- `/about`, `/reviews`, `/faq`, `/contact`, `/privacy` are dedicated pages.
-- Links to these pages use **absolute paths** (such as `/cars`), never `#cars` or scroll-to-section handlers.
-- `data-page=home` and `data-page=cars` mark unique rendered pages for smoke tests.
-
-After applying, stop the **existing** `next dev` server with `Ctrl+C` and restart it to pick up the route change. The script performs a production build and starts a separate temporary server to verify `/cars` and `/` are distinct routes before it pushes `main`.
-
-Run:
-
-```bash
-npm run dev -- -p 3001
-```
-
-Visit `http://localhost:3001/cars`. This should display **전체 차량 한눈에 둘러보기** and the full car filters. Visit `/` to see the navigation hub without the full fleet explorer.
+`/cars`는 `/`의 `#cars` 위치가 아니라 고유한 서버 페이지입니다. 모든 공개 페이지는 공통 루트 레이아웃과 개별 라우트 레이아웃을 사용합니다.

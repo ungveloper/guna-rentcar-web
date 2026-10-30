@@ -1,48 +1,16 @@
 "use client";
-import {createContext,useContext,useEffect,useRef,useState} from "react";
-import type {ReactNode} from "react";
-import {BRAND} from "../../_lib/site-data";
+import { createContext,useContext,useEffect,useRef,useState,type ReactNode } from "react";
 import InquiryForm,{type InquiryContext} from "./inquiry-form";
+import { BRAND } from "../../_lib/site-data";
 import Icon from "./icon";
-
-type ConsultApi = {openChooser:(context?:InquiryContext)=>void;openInquiry:(context?:InquiryContext)=>void;close:()=>void};
-const ConsultContext=createContext<ConsultApi|null>(null);
-export function useConsult(){const value=useContext(ConsultContext);if(!value)throw new Error("ConsultProvider is required");return value;}
+type ContextValue={openChooser:(context?:InquiryContext)=>void;openInquiry:(context?:InquiryContext)=>void;close:()=>void};
+const Context=createContext<ContextValue|null>(null);
+export function useConsult(){const value=useContext(Context);if(!value)throw new Error("ConsultProvider is required");return value;}
 export default function ConsultProvider({children}:{children:ReactNode}){
-  const [modal,setModal]=useState<"choice"|"inquiry"|null>(null);
-  const [context,setContext]=useState<InquiryContext>({});
-  const firstRef=useRef<HTMLButtonElement|null>(null);
-  const triggerRef=useRef<HTMLElement|null>(null);
-  const openChooser=(next:InquiryContext={})=>{triggerRef.current=document.activeElement as HTMLElement;setContext(next);setModal("choice");};
-  const openInquiry=(next:InquiryContext={})=>{if(!modal)triggerRef.current=document.activeElement as HTMLElement;setContext(next);setModal("inquiry");};
-  const close=()=>{setModal(null);window.setTimeout(()=>triggerRef.current?.focus(),0);};
-  useEffect(()=>{
-    if(!modal)return;
-    const old=document.body.style.overflow;document.body.style.overflow="hidden";
-    firstRef.current?.focus();
-    const onKey=(event:KeyboardEvent)=>{
-      if(event.key==="Escape"){event.preventDefault();setModal(null);triggerRef.current?.focus();}
-      if(event.key!=="Tab")return;
-      const target=document.querySelector<HTMLElement>("[data-consult-dialog]");
-      const focusables=target?.querySelectorAll<HTMLElement>('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex="0"]');
-      if(!focusables?.length)return;
-      const first=focusables[0],last=focusables[focusables.length-1];
-      if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
-      else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
-    };
-    window.addEventListener("keydown",onKey);
-    return()=>{document.body.style.overflow=old;window.removeEventListener("keydown",onKey);};
-  },[modal]);
-  return <ConsultContext.Provider value={{openChooser,openInquiry,close}}>{children}
-    {modal&&<div className="dialog-backdrop" onMouseDown={e=>{if(e.target===e.currentTarget)close();}}>
-      <section className={`consult-dialog ${modal==="choice"?"choice-dialog":"form-dialog"}`} role="dialog" aria-modal="true" aria-labelledby="consult-heading" data-consult-dialog>
-        <div className="dialog-top"><span className="eyebrow">GUNA RENTCAR · CONTACT</span><button className="icon-button" type="button" aria-label="닫기" ref={firstRef} onClick={close}><Icon name="close"/></button></div>
-        {modal==="choice"?<><h2 id="consult-heading">어떤 방법으로<br/>상담하시겠어요?</h2><p className="dialog-lead">차량과 일정에 대해 편하게 문의해 주세요.</p>
-          {context.car&&<p className="context-tag"><Icon name="car" size={16}/>{context.car} 차량 문의</p>}
-          <a className="consult-option" href={BRAND.tel} onClick={close}><span className="option-icon"><Icon name="phone"/></span><span><strong>전화로 바로 상담하기</strong><small>{BRAND.phone} · 24시간 전화 상담</small></span><Icon name="arrow-up"/></a>
-          <button className="consult-option" onClick={()=>setModal("inquiry")} type="button"><span className="option-icon"><Icon name="mail"/></span><span><strong>상담 요청 남기기</strong><small>현재 1차 검수용 · 실제 접수 미연결</small></span><Icon name="arrow"/></button>
-        </>:<><h2 id="consult-heading">{context.car?`${context.car} 차량 문의`:context.event?"이벤트 상담 요청":"상담 요청 남기기"}</h2><p className="dialog-lead">간단한 내용을 작성해 주세요. 현재는 화면 검수용입니다.</p><InquiryForm key={`${context.car??""}-${context.event??""}-${context.service??""}`} context={context} modal/></>}
-      </section>
-    </div>}
-  </ConsultContext.Provider>;
+ const [mode,setMode]=useState<"chooser"|"inquiry"|null>(null);const [context,setContext]=useState<InquiryContext>({});const opener=useRef<HTMLElement|null>(null);
+ const close=()=>{setMode(null);opener.current?.focus();};
+ const openChooser=(data:InquiryContext={})=>{opener.current=document.activeElement as HTMLElement;setContext(data);setMode("chooser");};
+ const openInquiry=(data:InquiryContext={})=>{if(!mode)opener.current=document.activeElement as HTMLElement;setContext(data);setMode("inquiry");};
+ useEffect(()=>{if(!mode)return;const old=document.body.style.overflow;document.body.style.overflow="hidden";const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setMode(null);};window.addEventListener("keydown",onKey);return()=>{document.body.style.overflow=old;window.removeEventListener("keydown",onKey);};},[mode]);
+ return <Context.Provider value={{openChooser,openInquiry,close}}>{children}{mode&&<div className="fixed inset-0 z-[100] flex items-end justify-center bg-black/60 p-0 sm:items-center sm:p-5" onMouseDown={e=>{if(e.target===e.currentTarget)close()}}><section role="dialog" aria-modal="true" aria-label={mode==="chooser"?"상담 방법 선택":"상담 요청 양식"} className="max-h-[94vh] w-full overflow-y-auto rounded-t-[26px] bg-white p-6 shadow-2xl sm:max-w-[560px] sm:rounded-[26px] sm:p-9"><div className="mb-7 flex items-center justify-between"><span className="text-xs font-bold tracking-[.2em] text-[#AA895B]">GUNA RENTCAR · CONTACT</span><button type="button" onClick={close} className="rounded-lg p-2 hover:bg-[#f2eee8]" aria-label="닫기"><Icon name="close"/></button></div>{mode==="chooser"?<><h2 className="text-3xl font-extrabold tracking-[-.05em]">어떤 방법으로<br/>상담하시겠어요?</h2><p className="my-5 text-sm leading-7 text-[#716d65]">차량과 일정에 대해 편하게 문의해 주세요.</p><a href={BRAND.tel} className="mb-3 flex items-center justify-between rounded-2xl border border-[#e5dfd5] p-5 hover:border-[#AA895B]"><span className="flex items-center gap-3 font-semibold"><Icon name="phone"/> 전화로 상담하기</span><strong className="text-[#AA895B]">{BRAND.phone}</strong></a><button type="button" className="flex w-full items-center justify-between rounded-2xl border border-[#e5dfd5] p-5 font-semibold hover:border-[#AA895B]" onClick={()=>setMode("inquiry")}><span className="flex items-center gap-3"><Icon name="mail"/> 상담 요청 남기기</span><Icon name="arrow"/></button><p className="mt-4 text-xs leading-6 text-[#85796c]">온라인 양식은 검수용이며 실제 접수되지 않습니다.</p></>:<><h2 className="mb-6 text-2xl font-bold">{context.car?`${context.car} 차량 문의`:"상담 요청 남기기"}</h2><InquiryForm key={`${context.car||""}-${context.service||""}-${context.event||""}`} context={context} modal/></>}</section></div>}</Context.Provider>;
 }
