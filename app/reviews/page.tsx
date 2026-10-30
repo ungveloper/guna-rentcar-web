@@ -4,4 +4,4 @@ import Reviews from "../_components/ui/reviews";
 import CtaBand from "../_components/ui/cta-band";
 import {pageMetadata} from "../_lib/seo";
 export const metadata:Metadata=pageMetadata("고객 후기 | 건아렌트카","건아렌트카 네이버 플레이스 실제 고객 후기 안내.","/reviews");
-export default function ReviewsPage(){return <div data-page="reviews"><PageHero eyebrow="CUSTOMER STORIES" title={<>고객이 전하는<br/><span className="text-[#AA895B]">건아렌트카 이야기.</span></>} description="실제 후기 원문과 작성일·작성자 정보는 출처 확인 후 등록합니다."/><Reviews/><CtaBand compact/></div>}
+export default function ReviewsPage(){return <div data-page="reviews"><PageHero eyebrow="CUSTOMER STORIES" title={<>좋은 경험은<br/><span className="text-[#AA895B]">기억에 남으니까.</span></>} description="건아렌트카를 이용한 고객의 실제 이야기는 원문 확인 후 정식으로 게시합니다."/><Reviews/><CtaBand compact/></div>}
