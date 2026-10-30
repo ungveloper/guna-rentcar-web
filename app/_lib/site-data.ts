@@ -165,3 +165,7 @@ export const reviewPlaceholders = ["차량 청결", "친절한 상담", "유연�
 export const formatPrice = (value: number) => `${new Intl.NumberFormat("ko-KR").format(value)}원~`;
 export const durationLabel = (duration: DurationKey) => durations.find((item) => item.key === duration)?.label ?? "6시간";
 export const getService = (key: string) => services.find((item) => item.key === key);
+
+// 고객 후기 공통 데이터: 원문 145건 / 대표 후기 12건
+export { customerReviews, featuredReviewIds, featuredReviewTopics } from "./review-data";
+export type { CustomerReview } from "./review-data";
