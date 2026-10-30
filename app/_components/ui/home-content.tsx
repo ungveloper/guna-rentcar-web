@@ -1,0 +1,25 @@
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+import {services,faqs} from "../../_lib/site-data";
+import Icon from "./icon";
+import {useConsult} from "./consult-provider";
+import VehicleExplorer from "./vehicle-explorer";
+import SectionHeading from "./section-heading";
+import Reviews from "./reviews";
+import FaqList from "./faq-list";
+import EventSection from "./event-section";
+import CtaBand from "./cta-band";
+const shortcuts=[{icon:"calendar" as const,num:"01",detail:"한 달을 위한 맞춤 렌트"},{icon:"car" as const,num:"02",detail:"필요한 날, 필요한 만큼"},{icon:"route" as const,num:"03",detail:"더 오래, 더 편안하게"},{icon:"shield" as const,num:"04",detail:"갑작스러운 순간에도"}];
+export default function HomeContent(){const {openChooser}=useConsult();return <>
+  <section className="home-hero"><div className="container home-hero-grid"><div className="home-hero-content"><span className="eyebrow"><span className="eyebrow-line"/>BUSAN RENTAL MOBILITY · SINCE 2006</span><h1>깨끗한 차량,<br/>당신의 일정에<br/><em>맞춘 렌트.</em></h1><p>차량의 청결함부터 세심한 상담까지.<br/>건아렌트카는 당신의 이동을 조금 더 편안하게 만듭니다.</p><div className="hero-buttons"><Link href="/cars" className="button button-primary">전체 차량 보기 <Icon name="arrow-up" size={19}/></Link><button type="button" className="button button-outline" onClick={()=>openChooser()}>상담하기 <Icon name="arrow" size={19}/></button></div><div className="hero-mobile-hint"><span className="live-dot"/> 연중무휴 · 24시간 전화 상담</div></div>
+  <div className="hero-art" aria-label="차종 참고 이미지"><div className="hero-art-text">DRIVE<br/><em>YOUR</em><br/>WAY.</div><div className="hero-vehicle-image"><Image src="/images/cars/avante.webp" alt="아반떼 CN7 차종 참고 이미지 - 실제 보유차량 원본 사진으로 교체 예정" fill sizes="(max-width:768px) 100vw, 50vw" priority/></div><div className="hero-art-corner">GUNA <span>RENTCAR</span></div><div className="hero-art-caption"><span>EVERYDAY, MADE EASIER.</span><span>01 / 01</span></div><span className="image-temp-stamp">차종 참고 이미지 · 원본 교체 예정</span></div></div>
+  <div className="container hero-trust"><div><Icon name="clock" size={26}/><span><strong>2006년부터 운영</strong><small>부산에서 쌓아온 경험</small></span></div><div><Icon name="phone" size={26}/><span><strong>24시간 전화 상담</strong><small>연중무휴 문의 가능</small></span></div><div><Icon name="shield" size={26}/><span><strong>완전자차 기본 포함</strong><small>자기부담금·휴차료 등 조건 적용</small></span></div></div></section>
+  <section className="section service-shortcuts" id="services"><div className="container"><SectionHeading eyebrow="OUR SERVICES" title={<>당신의 이동에 맞는<br/>렌트 서비스를 만나보세요.</>} description="잠깐의 이동부터 장기간의 이용까지. 건아렌트카가 상황에 맞는 선택을 안내합니다."/><div className="shortcut-grid">{services.map((service,i)=><Link className="shortcut-card" key={service.key} href={`/services/${service.key}`}><div className="shortcut-top"><span>{shortcuts[i].num} / 04</span><Icon name="arrow-up" size={20}/></div><div className="shortcut-icon"><Icon name={shortcuts[i].icon} size={30}/></div><div><h3>{service.title}</h3><p>{shortcuts[i].detail}</p><span className="shortcut-more">자세히 알아보기 <Icon name="arrow" size={16}/></span></div></Link>)}</div></div></section>
+  <section className="section cars-section" id="cars"><div className="container"><SectionHeading eyebrow="FIND YOUR CAR" title={<>당신의 하루에<br/>어울리는 차량을 찾아보세요.</>} description="경차부터 SUV, 승합차까지. 원하는 차종을 둘러보고 편하게 상담해 주세요." aside={<span className="section-count">16 <small>REGISTERED MODELS</small></span>}/><VehicleExplorer variant="home"/></div></section>
+  <section className="story-section"><div className="container story-grid"><div className="story-intro"><span className="eyebrow light"><span className="eyebrow-line"/> WHY GUNA RENTCAR</span><h2>차량의 청결함부터,<br/>고객을 향한<br/><em>세심한 배려까지.</em></h2><p>건아렌트카가 중요하게 생각하는 건 단순히 차량을 빌려드리는 일이 아닙니다. 고객이 안심하고 이동할 수 있도록 차량과 서비스의 기본을 지켜갑니다.</p><Link href="/about" className="story-about-link">건아렌트카 이야기 <Icon name="arrow-up" size={18}/></Link><div className="story-since"><span>SINCE</span><strong>2006</strong><small>부산에서 시작한 건아렌트카</small></div></div><div className="story-values"><div className="story-value"><span className="story-value-num">01</span><Icon name="sparkle" size={26}/><h3>깨끗하게 관리하는 차량</h3><p>차량의 상태와 청결을 꼼꼼히 관리하며 편안한 이용 경험을 지향합니다.</p></div><div className="story-value"><span className="story-value-num">02</span><Icon name="heart" size={26}/><h3>친절하고 세심한 상담</h3><p>고객의 상황과 요구를 충분히 듣고 적합한 이용 방법을 안내합니다.</p></div><div className="story-value"><span className="story-value-num">03</span><Icon name="calendar" size={26}/><h3>일정에 맞춘 유연함</h3><p>차량 인수·반납 장소와 시간은 사전에 상담하여 가능한 범위에서 조율합니다.</p></div></div></div></section>
+  <Reviews/>
+  <EventSection/>
+  <section className="section faq-preview"><div className="container faq-layout"><div className="faq-layout-heading"><span className="eyebrow"><span className="eyebrow-line"/>FAQ</span><h2>궁금한 점이<br/>있으신가요?</h2><p>자주 묻는 질문을 모았습니다.<br/>더 자세한 내용은 전화로 편하게 문의해 주세요.</p><Link className="button button-outline" href="/faq">전체 FAQ 보기 <Icon name="arrow" size={18}/></Link></div><FaqList items={faqs.filter(q=>q.home).slice(0,6)}/></div></section>
+  <CtaBand/>
+</>}
