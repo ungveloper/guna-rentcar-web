@@ -1,20 +1,15 @@
-import type {Metadata} from "next";
-import {notFound} from "next/navigation";
-import PageHero from "../../_components/ui/page-hero";
-import VehicleExplorer from "../../_components/ui/vehicle-explorer";
-import Icon from "../../_components/ui/icon";
-import SectionHeading from "../../_components/ui/section-heading";
-import FaqList from "../../_components/ui/faq-list";
-import EventSection from "../../_components/ui/event-section";
-import CtaBand from "../../_components/ui/cta-band";
-import {faqs,getService,services,type ServiceKey} from "../../_lib/site-data";
-import {pageMetadata} from "../../_lib/seo";
 import Link from "next/link";
-type Props={params:Promise<{slug:string}>};
-export function generateStaticParams(){return services.map(s=>({slug:s.key}));}
-export async function generateMetadata({params}:Props):Promise<Metadata>{const {slug}=await params;const item=getService(slug);if(!item)return {};return pageMetadata(`${item.title} | 부산 건아렌트카`,`${item.summary} 부산 건아렌트카 24시간 전화 상담, 이용 가능 여부 및 최종 조건은 전화 문의.`,`/services/${slug}`);}
-export default async function ServicePage({params}:Props){
-  const {slug}=await params;const service=getService(slug);if(!service)notFound();
+import PageHero from "./page-hero";
+import VehicleExplorer from "./vehicle-explorer";
+import Icon from "./icon";
+import SectionHeading from "./section-heading";
+import FaqList from "./faq-list";
+import EventSection from "./event-section";
+import CtaBand from "./cta-band";
+import {faqs,type Service,type ServiceKey} from "../../_lib/site-data";
+
+/** Shared view for the four dedicated service routes. */
+export default function ServicePageContent({service}:{service:Service}) {
   const quoteOnly=service.key!=="short-term";
   const related=faqs.filter(q=>q.services.includes(service.key)).slice(0,6);
   return <><PageHero eyebrow={service.kicker} title={<>{service.title},<br/><em>{service.subtitle}</em></>} description={service.summary}><div className="page-hero-pills"><span><Icon name="phone" size={15}/> 24시간 전화 상담</span><span><Icon name="shield" size={15}/> 완전자차 기본 포함*</span></div></PageHero>
