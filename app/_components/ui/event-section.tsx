@@ -58,7 +58,7 @@ export default function EventSection() {
             <span className="text-xs font-extrabold tracking-[.2em] text-[#AA895B]">SPECIAL OFFER / GUNA RENTCAR</span>
             <h2 className="mt-4 text-[clamp(30px,4vw,50px)] font-black tracking-[-.06em] text-[#1b2929]">{heading}</h2>
           </div>
-          <p className="text-sm leading-7 text-[#748078]">이용 기간과 혜택 적용 조건은 상담 시 확인해 주세요.</p>
+          <p className="text-sm leading-7 text-[#748078]">혜택 적용 여부와 조건은 예약 전에 전화로 확인해 주세요.</p>
         </div>
         <div className={`grid gap-5 ${visible.length > 1 ? "md:grid-cols-2" : "lg:grid-cols-2"}`}>
           {visible.map((event) => (
@@ -79,7 +79,7 @@ export default function EventSection() {
                 <h3 className="text-[clamp(21px,2.5vw,29px)] font-black leading-[1.35] tracking-[-.045em] text-[#1b2929]">{event.title}</h3>
                 <p className="mt-3 text-sm font-medium text-[#738078]">{event.startDate} ~ {event.endDate}</p>
               </div>
-              <span className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-[#AA895B]">혜택 자세히 보기 <Icon name="arrow-up" size={17} /></span>
+              <span className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-[#AA895B]">기간·조건 확인 <Icon name="arrow-up" size={17} /></span>
             </button>
           ))}
         </div>
@@ -105,9 +105,9 @@ export default function EventSection() {
                 openInquiry({event: selected.title, service: selected.target === "accident" ? "accident" : undefined});
               }}
             >
-              혜택 상담 요청하기
+              이벤트 문의하기
             </button>
-            <p className="mt-3 text-center text-xs leading-6 text-[#869188]">온라인 양식은 검수용으로 실제 접수되지 않습니다. 전화 상담을 이용해 주세요.</p>
+            <p className="mt-3 text-center text-xs leading-6 text-[#869188]">온라인 문의는 아직 접수되지 않습니다. 전화로 문의해 주세요.</p>
           </div>
         </div>
       )}

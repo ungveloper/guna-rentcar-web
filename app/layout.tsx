@@ -10,7 +10,7 @@ import "./globals.css";
 export const metadata: Metadata = {
  metadataBase:new URL(siteUrl),
  title:{default:"건아렌트카 | GUNA RENTCAR",template:"%s | 건아렌트카"},
- description:"부산 건아렌트카. 월렌트·단기렌트·장기렌트·사고대차, 전체 차량 안내 및 24시간 전화 상담.",
+ description:"부산 건아렌트카에서 월렌트·단기렌트·장기렌트·사고대차를 안내합니다. 차량과 요금은 051-866-1124로 문의해 주세요.",
  applicationName:"GUNA RENTCAR",
  robots:isPublicLaunch?{index:true,follow:true}:{index:false,follow:false},
 };
